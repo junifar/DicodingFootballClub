@@ -22,4 +22,25 @@
         <item>@drawable/img_acm</item>
         <item>@drawable/img_arsenal</item>
     </array>
+
+    <string-array name="club_description">
+        <item>Futbol Club Barcelona, known simply as Barcelona and colloquially as Barça, is a professional football
+            club based in Barcelona, Catalonia, Spain.</item>
+        <item>Real Madrid Club de Fútbol, umumnya dikenal sebagai Real Madrid, adalah klub sepak bola profesional yang
+            berbasis di Madrid, Spanyol. Didirikan pada tahun 1902 sebagai Madrid Football Club, secara tradisional
+            mengenakan kostum kandang putih. </item>
+        <item>Fußball-Club Bayern München e.V., commonly known as FC Bayern München, FCB, Bayern Munich, or FC Bayern,
+            is a German sports club based in Munich, Bavaria.</item>
+        <item>Manchester City Football Club, commonly known as City, is a football club in Manchester, England. Founded
+            in 1880 as St. Marks, it became Ardwick Association Football Club in 1887 and Manchester City in 1894.</item>
+        <item>Manchester United Football Club, commonly known as Man. United or simply United, is a professional
+            football club based in Old Trafford, Greater Manchester, England, that competes in the Premier League, the top flight of English football.</item>
+        <item>Chelsea Football Club is a professional football club in London, England, that competes in the Premier
+            League. Founded in 1905, the clubs home ground since then has been Stamford Bridge. Chelsea won the First
+            Division title in 1955, followed by various cup competitions between 1965 and 1971.</item>
+        <item>Associazione Calcio Milan, sering disebut sebagai A.C. Milan atau hanya Milan, adalah sebuah klub sepak
+            bola Italia yang berbasis di Milan, Lombardia, yang bermain di Serie A. Mereka bermain dengan seragam bergaris merah-hitam dan celana putih, sehingga dijuluki rossoneri.</item>
+        <item>Arsenal Football Club is a professional football club based in Islington, London, England, that plays in
+            the Premier League, the top flight of English football. </item>
+    </string-array>
 </resources>

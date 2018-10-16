@@ -19,11 +19,11 @@ class MainActivity : AppCompatActivity() {
 
         initData()
         val adapter = RecyclerViewAdapter(items){
-//            val toast = Toast.makeText(applicationContext, it.name, Toast.LENGTH_SHORT)
+//            val toast = Toast.makeText(applicationContext, it.image.toString(), Toast.LENGTH_SHORT)
 //            toast.show()
-            val bundle = Bundle()
-            bundle.putSerializable("image_data", it.image)
-            startActivity(intentFor<FootballClubDetail>("items" to bundle).singleTop())
+//            val bundle = Bundle()
+//            bundle.putSerializable("image_data", it.image)
+            startActivity(intentFor<FootballClubDetail>("items" to it.image, "description" to it.description).singleTop())
         }
         MainActivityUI(adapter).setContentView(this)
     }
@@ -31,10 +31,11 @@ class MainActivity : AppCompatActivity() {
     private fun initData(){
         val name = resources.getStringArray(R.array.club_name)
         val image = resources.obtainTypedArray(R.array.club_image)
+        val description = resources.getStringArray(R.array.club_description)
         items.clear()
         for (i in name.indices) {
             items.add(Item(name[i],
-                image.getResourceId(i, 0)))
+                image.getResourceId(i, 0), description[i]))
         }
         image.recycle()
     }
