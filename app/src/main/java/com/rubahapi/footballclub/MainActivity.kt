@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         initData()
         val adapter = RecyclerViewAdapter(items){
-                        val toast = Toast.makeText(applicationContext, it.name, Toast.LENGTH_SHORT)
+            val toast = Toast.makeText(applicationContext, it.name, Toast.LENGTH_SHORT)
             toast.show()
         }
         MainActivityUI(adapter).setContentView(this)

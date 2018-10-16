@@ -21,7 +21,6 @@ class ItemListUI:AnkoComponent<Context>{
 
             textView {
                 id = R.id.name
-                text = "Barcelona FC"
             }.lparams(width= wrapContent, height = wrapContent){
                 margin = dip(10)
                 gravity = Gravity.CENTER_VERTICAL
