@@ -12,11 +12,7 @@ class MainActivityUI(private val recyclerViewAdapter: RecyclerViewAdapter):AnkoC
         return verticalLayout {
             padding = dip(16)
 
-            val name = editText {
-                hint = "What's your name?"
-            }
-
-            val recycler = recyclerView {
+            recyclerView {
                 lparams(width= matchParent, height = matchParent)
                 layoutManager = LinearLayoutManager(ctx)
                 adapter = recyclerViewAdapter
