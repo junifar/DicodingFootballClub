@@ -1,19 +1,21 @@
 package com.rubahapi.footballclub
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.rubahapi.footballclub.view.ItemListUI
 import com.squareup.picasso.Picasso
+import org.jetbrains.anko.AnkoContext
 
-class RecyclerViewAdapter(private val context: Context, private val items: List<Item>, private val listener: (Item) -> Unit)
+class RecyclerViewAdapter(
+    private val items: List<Item>,
+    private val listener: (Item) -> Unit)
     : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>(){
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)=
-        ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_list, parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(ItemListUI().createView(AnkoContext.create(parent.context)))
+    }
 
     override fun getItemCount(): Int = items.size
 
