@@ -9,8 +9,8 @@ class FootballClubDetail : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val image_src = intent.extras?.getInt("items")
-        val description = intent.extras?.getString("description")
-        FootballClubDetailUI(image_src, description).setContentView(this)
+        val item = intent.getParcelableExtra<Item>("item")
+
+        FootballClubDetailUI(item).setContentView(this)
     }
 }

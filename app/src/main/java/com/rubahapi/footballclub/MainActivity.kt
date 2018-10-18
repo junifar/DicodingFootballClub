@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         initData()
         val adapter = RecyclerViewAdapter(items){
-            startActivity(intentFor<FootballClubDetail>("items" to it.image, "description" to it.description).singleTop())
+            startActivity(intentFor<FootballClubDetail>("item" to it).singleTop())
         }
         MainActivityUI(adapter).setContentView(this)
     }
