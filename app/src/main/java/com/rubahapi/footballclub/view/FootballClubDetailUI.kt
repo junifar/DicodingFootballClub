@@ -14,8 +14,6 @@ class FootballClubDetailUI(private val item: Item): AnkoComponent<FootballClubDe
 
             imageView {
                 id = R.id.detail_image
-//                item.image?.let { setImageResource(it) }
-//                image_src?.let { setImageResource(it) }
             }.lparams(width= dip(200), height = dip(200))
             {
                 gravity = Gravity.CENTER_HORIZONTAL
@@ -23,7 +21,6 @@ class FootballClubDetailUI(private val item: Item): AnkoComponent<FootballClubDe
 
             textView {
                 id = R.id.detail_description
-//                text = item.description
             }
 
         }

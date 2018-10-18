@@ -15,12 +15,12 @@ class ItemListUI:AnkoComponent<Context>{
             orientation = LinearLayout.HORIZONTAL
 
             imageView {
-                id = R.id.image
+                id = R.id.list_image
             }.lparams(width = dip(50),
                     height = dip(50))
 
             textView {
-                id = R.id.name
+                id = R.id.list_name
             }.lparams(width= wrapContent, height = wrapContent){
                 margin = dip(10)
                 gravity = Gravity.CENTER_VERTICAL
