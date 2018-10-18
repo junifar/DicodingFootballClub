@@ -4,7 +4,6 @@ import android.view.Gravity
 import android.view.View
 import com.rubahapi.footballclub.FootballClubDetail
 import com.rubahapi.footballclub.Item
-import com.rubahapi.footballclub.view.ConstantUI.Companion.image_detail
 import org.jetbrains.anko.*
 
 class FootballClubDetailUI(private val item:Item): AnkoComponent<FootballClubDetail>{
@@ -13,7 +12,6 @@ class FootballClubDetailUI(private val item:Item): AnkoComponent<FootballClubDet
             padding = dip(16)
 
             imageView {
-                id = image_detail
                 item.image?.let { setImageResource(it) }
             }.lparams(width= dip(200), height = dip(200))
             {
