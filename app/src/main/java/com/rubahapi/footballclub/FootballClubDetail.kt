@@ -15,7 +15,7 @@ class FootballClubDetail : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val item = intent.getParcelableExtra<Item>("item")
 
-        FootballClubDetailUI(item).setContentView(this)
+        FootballClubDetailUI().setContentView(this)
 
         val detailImage = find<ImageView>(R.id.detail_image)
         val detailDescription = find<TextView>(R.id.detail_description)

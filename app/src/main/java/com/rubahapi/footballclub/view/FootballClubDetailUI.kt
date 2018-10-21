@@ -7,7 +7,7 @@ import com.rubahapi.footballclub.Item
 import com.rubahapi.footballclub.R
 import org.jetbrains.anko.*
 
-class FootballClubDetailUI(private val item: Item): AnkoComponent<FootballClubDetail>{
+class FootballClubDetailUI: AnkoComponent<FootballClubDetail>{
     override fun createView(ui: AnkoContext<FootballClubDetail>): View = with(ui) {
         return verticalLayout {
             padding = dip(16)
