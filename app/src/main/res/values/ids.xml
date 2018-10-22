@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="detail_image" type="id"/>
-    <item name="detail_description" type="id"/>
-    <item name="list_name" type="id" />
-    <item name="list_image" type="id" />
+    <item name="team_badge" type="id" />
+    <item name="team_name" type="id" />
 </resources>
