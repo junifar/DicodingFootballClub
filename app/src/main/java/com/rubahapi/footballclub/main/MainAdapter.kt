@@ -6,16 +6,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.dicoding.kotlinacademy.model.Team
 import com.rubahapi.footballclub.R.id.team_badge
 import com.rubahapi.footballclub.R.id.team_name
-import com.dicoding.kotlinacademy.model.Team
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 
 /**
  * Created by root on 1/16/18.
  */
-class MainAdapter(private val teams: List<Team>)
+class MainAdapter(private val teams: List<Team>,
+                  private val listener: (Team) -> Unit)
     : RecyclerView.Adapter<TeamViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
@@ -23,7 +24,7 @@ class MainAdapter(private val teams: List<Team>)
     }
 
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
-        holder.bindItem(teams[position])
+        holder.bindItem(teams[position], listener)
     }
 
     override fun getItemCount(): Int = teams.size
@@ -63,8 +64,10 @@ class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view){
     private val teamBadge: ImageView = view.find(team_badge)
     private val teamName: TextView = view.find(team_name)
 
-    fun bindItem(teams: Team) {
+    fun bindItem(teams: Team, listener: (Team) -> Unit) {
         Picasso.get().load(teams.teamBadge).into(teamBadge)
         teamName.text = teams.teamName
+
+        itemView.setOnClickListener { listener(teams) }
     }
 }
