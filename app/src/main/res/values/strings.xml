@@ -9,4 +9,8 @@
         <item>French Ligue 1</item>
         <item>Spanish La Liga</item>
     </array>
+    <string name="title_activity_coba_dulu">CobaDuluActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
