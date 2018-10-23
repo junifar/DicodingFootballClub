@@ -52,7 +52,6 @@ class TeamUI : AnkoComponent<ViewGroup> {
                 }.lparams{
                     margin = dip(15)
                 }
-
             }
         }
     }

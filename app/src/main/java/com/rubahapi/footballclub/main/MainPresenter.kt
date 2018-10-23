@@ -5,6 +5,7 @@ import com.dicoding.kotlinacademy.api.TheSportDBApi
 import com.dicoding.kotlinacademy.model.TeamResponse
 import com.google.gson.Gson
 import com.rubahapi.footballclub.model.LeagueResponse
+import com.rubahapi.footballclub.model.NextMatchResponse
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
@@ -13,26 +14,21 @@ class MainPresenter(private val view: MainView,
                     private val gson: Gson
 ) {
 
-//    fun getNextMatch(id: Int){
-//        view.showLoading()
-//
-//        doAsync {
-//            val data = gson.fromJson(apiRepository
-//                .doRequest(TheSportDBApi.getNextMatch(id.toString())),
-//                NextMatchResponse::class.java
-//            )
-//
-//            uiThread {
-//                view.hideLoading()
-//                println(data.nextMatches?.get(0)?.eventID.toString())
-//                try {
-//                    view.showNextMatchList(data.nextMatches!!)
-//                } catch (e: NullPointerException) {
-//                    view.showEmptyData()
-//                }
-//            }
-//        }
-//    }
+    fun getNextMatch(id: String){
+        view.showLoading()
+
+        doAsync {
+            val data = gson.fromJson(apiRepository
+                .doRequest(TheSportDBApi.getNextMatch(id)),
+                NextMatchResponse::class.java
+            )
+
+            uiThread {
+                view.hideLoading()
+                view.showNextMatchList(data.nextMatches)
+            }
+        }
+    }
 
     fun getTeamList(league: String?) {
         view.showLoading()

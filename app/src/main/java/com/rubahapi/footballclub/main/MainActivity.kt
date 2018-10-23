@@ -15,6 +15,7 @@ import com.google.gson.Gson
 import com.rubahapi.footballclub.R.color.colorAccent
 import com.rubahapi.footballclub.model.League
 import com.rubahapi.footballclub.model.LeagueResponse
+import com.rubahapi.footballclub.model.NextMatch
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.onRefresh
@@ -23,16 +24,16 @@ import org.jetbrains.anko.support.v4.swipeRefreshLayout
 class MainActivity : AppCompatActivity(), MainView {
 
     private var teams: MutableList<Team> = mutableListOf()
-//    private var nextMatches: MutableList<NextMatch> = mutableListOf()
+    private var nextMatches: MutableList<NextMatch> = mutableListOf()
     private lateinit var listTeam: RecyclerView
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var progressBar: ProgressBar
     private lateinit var spinner: Spinner
     private lateinit var leagueName: String
-//    private lateinit var leagueId: String
+    private lateinit var leagueId: String
     private lateinit var presenter: MainPresenter
     private lateinit var adapter: MainAdapter
-//    private lateinit var nextMatchAdapter: NextMatchAdapter
+    private lateinit var nextMatchAdapter: NextMatchAdapter
     private lateinit var leagueItem: League
 //    lateinit var emptyDataView: LinearLayout
 
@@ -91,15 +92,15 @@ class MainActivity : AppCompatActivity(), MainView {
             it.teamId?.let { it1 -> toast(it1) }
         }
 
-//        nextMatchAdapter = NextMatchAdapter(nextMatches){
-//            it.eventID?.let { it1 -> toast(it1) }
-//        }
-        listTeam.adapter = adapter
-//        listTeam.adapter = nextMatchAdapter
+        nextMatchAdapter = NextMatchAdapter(nextMatches){
+            it.eventID?.let { it1 -> toast(it1) }
+        }
+//        listTeam.adapter = adapter
+        listTeam.adapter = nextMatchAdapter
 
         swipeRefresh.onRefresh {
-            presenter.getTeamList(leagueName)
-//            presenter.getNextMatch(leagueId.toInt())
+//            presenter.getTeamList(leagueName)
+            presenter.getNextMatch(leagueId)
         }
     }
 
@@ -121,19 +122,19 @@ class MainActivity : AppCompatActivity(), MainView {
                 leagueName = leagueItem.leagueName.toString()
 //                leagueId = leagueItem.leagueId.toString()
 //                println(leagueItem.leagueId)
-//                presenter.getNextMatch(leagueItem.leagueId)
-                presenter.getTeamList(leagueName)
+                presenter.getNextMatch(leagueItem.leagueId.toString())
+//                presenter.getTeamList(leagueName)
             }
 
         }
     }
 
-//    override fun showNextMatchList(data: List<NextMatch>) {
-//        swipeRefresh.isRefreshing = false
-//        nextMatches.clear()
-//        nextMatches.addAll(data)
-//        nextMatchAdapter.notifyDataSetChanged()
-//    }
+    override fun showNextMatchList(data: List<NextMatch>) {
+        swipeRefresh.isRefreshing = false
+        nextMatches.clear()
+        nextMatches.addAll(data)
+        nextMatchAdapter.notifyDataSetChanged()
+    }
 //
 //    override fun showEmptyData() {
 //        progressBar.invisible()

@@ -35,7 +35,7 @@ object TheSportDBApi {
             .appendPath("json")
             .appendPath(BuildConfig.TSDB_API_KEY)
             .appendPath("eventsnextleague.php")
-            .appendQueryParameter("id", "4328")
+            .appendQueryParameter("id", id)
             .build()
             .toString()
     }

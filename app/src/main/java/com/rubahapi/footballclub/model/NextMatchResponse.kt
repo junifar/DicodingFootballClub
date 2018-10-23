@@ -1,5 +1,8 @@
 package com.rubahapi.footballclub.model
 
+import com.google.gson.annotations.SerializedName
+
 data class NextMatchResponse(
-    val nextMatches: List<NextMatch>?
+    @SerializedName("events")
+    val nextMatches: List<NextMatch>
 )

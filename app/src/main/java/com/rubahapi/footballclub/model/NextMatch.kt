@@ -1,7 +1,6 @@
 package com.rubahapi.footballclub.model
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
 
 data class NextMatch(
     @SerializedName("idEvent")
@@ -9,5 +8,5 @@ data class NextMatch(
     @SerializedName("strEvent")
     val eventName: String? = null,
     @SerializedName("strDate")
-    val eventDate: Date? = null
+    val eventDate: String? = null
 )

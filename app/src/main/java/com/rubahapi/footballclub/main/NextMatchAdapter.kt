@@ -32,7 +32,7 @@ class NextMatchUI : AnkoComponent<ViewGroup>{
             linearLayout {
                 lparams(width = matchParent, height = wrapContent)
                 padding = dip(16)
-                orientation = LinearLayout.HORIZONTAL
+                orientation = LinearLayout.VERTICAL
 
                 textView {
                     id = R.id.event_name
