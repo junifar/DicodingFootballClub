@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity(), MainView {
     private lateinit var adapter: MainAdapter
     private lateinit var nextMatchAdapter: NextMatchAdapter
     private lateinit var leagueItem: League
-//    lateinit var emptyDataView: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,11 +94,10 @@ class MainActivity : AppCompatActivity(), MainView {
         nextMatchAdapter = NextMatchAdapter(nextMatches){
             it.eventID?.let { it1 -> toast(it1) }
         }
-//        listTeam.adapter = adapter
+
         listTeam.adapter = nextMatchAdapter
 
         swipeRefresh.onRefresh {
-//            presenter.getTeamList(leagueName)
             presenter.getNextMatch(leagueId)
         }
     }
@@ -120,10 +118,7 @@ class MainActivity : AppCompatActivity(), MainView {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 leagueItem = spinner.selectedItem as League
                 leagueName = leagueItem.leagueName.toString()
-//                leagueId = leagueItem.leagueId.toString()
-//                println(leagueItem.leagueId)
                 presenter.getNextMatch(leagueItem.leagueId.toString())
-//                presenter.getTeamList(leagueName)
             }
 
         }
@@ -135,9 +130,4 @@ class MainActivity : AppCompatActivity(), MainView {
         nextMatches.addAll(data)
         nextMatchAdapter.notifyDataSetChanged()
     }
-//
-//    override fun showEmptyData() {
-//        progressBar.invisible()
-//        listTeam.invisible()
-//    }
 }
