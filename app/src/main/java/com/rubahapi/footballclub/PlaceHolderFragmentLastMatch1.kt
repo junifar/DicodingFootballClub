@@ -13,7 +13,7 @@ class PlaceholderFragmentLastMatch1: Fragment(){
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(R.layout.fragment_coba_dulu2, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_coba_dulu3, container, false)
         rootView.section_label.text = getString(R.string.section_format, arguments?.getInt(ARG_SECTION_NUMBER))
         return rootView
     }
