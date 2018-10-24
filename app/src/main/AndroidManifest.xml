@@ -11,15 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity"></activity>
-        <activity android:name=".tabsample.TabActivity">
-
-        </activity>
-        <activity android:name=".cobamatch.CobaActivity"></activity>
+        <activity android:name=".main.MainActivity" />
+        <activity android:name=".tabsample.TabActivity"></activity>
+        <activity android:name=".cobamatch.CobaActivity" />
         <activity
             android:name=".CobaDuluActivity"
             android:label="@string/title_activity_coba_dulu">
-
+        </activity>
+        <activity
+            android:name=".CobaDulu2Activity"
+            android:label="@string/title_activity_coba_dulu2"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
