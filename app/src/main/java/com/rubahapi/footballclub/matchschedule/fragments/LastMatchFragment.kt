@@ -12,6 +12,7 @@ import com.dicoding.kotlinacademy.util.visible
 import com.google.gson.Gson
 import com.rubahapi.footballclub.R
 import com.rubahapi.footballclub.main.NextMatchAdapter
+import com.rubahapi.footballclub.model.LastMatch
 import com.rubahapi.footballclub.model.NextMatch
 import kotlinx.android.synthetic.main.fragment_last_match.*
 import org.jetbrains.anko.support.v4.onRefresh
@@ -19,10 +20,12 @@ import org.jetbrains.anko.support.v4.toast
 
 class LastMatchFragment:Fragment(), LastMatchView{
 
-    private var nextMatches: MutableList<NextMatch> = mutableListOf()
+//    private var nextMatches: MutableList<NextMatch> = mutableListOf()
+    private var lastMatches: MutableList<LastMatch> = mutableListOf()
 
     lateinit var presenter: LastMatchPresenter
-    private lateinit var nextMatchAdapter: NextMatchAdapter
+//    private lateinit var nextMatchAdapter: NextMatchAdapter
+    private lateinit var lastMatchAdapter: LastMatchAdapter
 //    lateinit var  rootView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -41,7 +44,7 @@ class LastMatchFragment:Fragment(), LastMatchView{
         presenter = LastMatchPresenter(this, request, gson)
         presenter.getLastMatchList()
 
-        nextMatchAdapter = NextMatchAdapter(nextMatches){
+        lastMatchAdapter = LastMatchAdapter(lastMatches){
             toast("Yeah")
         }
 
@@ -50,7 +53,7 @@ class LastMatchFragment:Fragment(), LastMatchView{
         }
         recycler_last_match.layoutManager = LinearLayoutManager(activity?.baseContext)
 
-        recycler_last_match.adapter = nextMatchAdapter
+        recycler_last_match.adapter = lastMatchAdapter
     }
 
     companion object {
@@ -73,10 +76,10 @@ class LastMatchFragment:Fragment(), LastMatchView{
         progressBar.invisible()
     }
 
-    override fun showLastMatchList(data: List<NextMatch>) {
+    override fun showLastMatchList(data: List<LastMatch>) {
         swipeRefresh.isRefreshing = false
-        nextMatches.clear()
-        nextMatches.addAll(data)
-        nextMatchAdapter.notifyDataSetChanged()
+        lastMatches.clear()
+        lastMatches.addAll(data)
+        lastMatchAdapter.notifyDataSetChanged()
     }
 }

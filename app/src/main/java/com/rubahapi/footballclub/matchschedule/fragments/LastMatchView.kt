@@ -1,9 +1,9 @@
 package com.rubahapi.footballclub.matchschedule.fragments
 
-import com.rubahapi.footballclub.model.NextMatch
+import com.rubahapi.footballclub.model.LastMatch
 
 interface LastMatchView{
     fun showLoading()
     fun hideLoading()
-    fun showLastMatchList(data: List<NextMatch>)
+    fun showLastMatchList(data: List<LastMatch>)
 }
