@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dicoding.kotlinacademy.api.ApiRepository
+import com.rubahapi.footballclub.api.ApiRepository
 import com.google.gson.Gson
 import com.rubahapi.footballclub.main.NextMatchAdapter
 import com.rubahapi.footballclub.model.NextMatch

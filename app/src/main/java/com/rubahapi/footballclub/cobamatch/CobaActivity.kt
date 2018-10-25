@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
-import com.dicoding.kotlinacademy.api.ApiRepository
+import com.rubahapi.footballclub.api.ApiRepository
 import com.dicoding.kotlinacademy.model.Team
 import com.google.gson.Gson
 import com.rubahapi.footballclub.main.MainAdapter

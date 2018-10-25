@@ -2,37 +2,40 @@ package com.rubahapi.footballclub.matchschedule.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dicoding.kotlinacademy.api.ApiRepository
-import com.dicoding.kotlinacademy.util.invisible
-import com.dicoding.kotlinacademy.util.visible
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import com.rubahapi.footballclub.api.ApiRepository
+import com.rubahapi.footballclub.util.invisible
+import com.rubahapi.footballclub.util.visible
 import com.google.gson.Gson
-import com.rubahapi.footballclub.R
-import com.rubahapi.footballclub.main.NextMatchAdapter
 import com.rubahapi.footballclub.model.LastMatch
-import com.rubahapi.footballclub.model.NextMatch
-import kotlinx.android.synthetic.main.fragment_last_match.*
+import org.jetbrains.anko.*
+import org.jetbrains.anko.recyclerview.v7.recyclerView
+import org.jetbrains.anko.support.v4.UI
 import org.jetbrains.anko.support.v4.onRefresh
+import org.jetbrains.anko.support.v4.swipeRefreshLayout
 import org.jetbrains.anko.support.v4.toast
 
 class LastMatchFragment:Fragment(), LastMatchView{
 
-//    private var nextMatches: MutableList<NextMatch> = mutableListOf()
     private var lastMatches: MutableList<LastMatch> = mutableListOf()
-
     lateinit var presenter: LastMatchPresenter
-//    private lateinit var nextMatchAdapter: NextMatchAdapter
     private lateinit var lastMatchAdapter: LastMatchAdapter
-//    lateinit var  rootView: View
+
+    private lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var listLastMatch: RecyclerView
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val rootView = inflater.inflate(R.layout.fragment_last_match, container, false)
-//        rootView = inflater.inflate(R.layout.fragment_last_match, container, false)
-//        rootView.section_label.text = "Test Last Match"
-        return rootView
+//        val rootView = inflater.inflate(R.layout.fragment_last_match, container, false)
+//        return rootView
+        return setupUI()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -48,12 +51,12 @@ class LastMatchFragment:Fragment(), LastMatchView{
             toast("Yeah")
         }
 
-        swipeRefresh?.onRefresh {
+        swipeRefresh.onRefresh {
             presenter.getLastMatchList()
         }
-        recycler_last_match.layoutManager = LinearLayoutManager(activity?.baseContext)
+//        recycler_last_match.layoutManager = LinearLayoutManager(activity?.baseContext)
 
-        recycler_last_match.adapter = lastMatchAdapter
+        listLastMatch.adapter = lastMatchAdapter
     }
 
     companion object {
@@ -81,5 +84,41 @@ class LastMatchFragment:Fragment(), LastMatchView{
         lastMatches.clear()
         lastMatches.addAll(data)
         lastMatchAdapter.notifyDataSetChanged()
+    }
+
+    private fun setupUI(): View{
+        return UI{
+            linearLayout {
+                lparams(
+                    width = matchParent,
+                    height = matchParent
+                )
+                orientation = LinearLayout.VERTICAL
+
+                swipeRefresh = swipeRefreshLayout {
+                    relativeLayout {
+                        lparams(
+                            width = matchParent,
+                            height = wrapContent
+                        )
+                        listLastMatch = recyclerView {
+                            lparams(
+                                width = matchParent,
+                                height =  matchParent
+                            )
+                            layoutManager = LinearLayoutManager(ctx)
+                        }
+
+                        progressBar = progressBar {
+                        }.lparams{
+                            centerHorizontally()
+                        }
+                    }
+                }.lparams(
+                    width = matchParent,
+                    height = matchParent
+                )
+            }
+        }.view
     }
 }

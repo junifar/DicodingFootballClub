@@ -1,4 +1,4 @@
-package com.dicoding.kotlinacademy.util
+package com.rubahapi.footballclub.util
 
 import android.view.View
 

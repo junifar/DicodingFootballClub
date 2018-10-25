@@ -1,4 +1,4 @@
-package com.dicoding.kotlinacademy.api
+package com.rubahapi.footballclub.api
 
 import android.net.Uri
 import com.rubahapi.footballclub.BuildConfig

@@ -7,10 +7,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.*
-import com.dicoding.kotlinacademy.api.ApiRepository
+import com.rubahapi.footballclub.api.ApiRepository
 import com.dicoding.kotlinacademy.model.Team
-import com.dicoding.kotlinacademy.util.invisible
-import com.dicoding.kotlinacademy.util.visible
+import com.rubahapi.footballclub.util.invisible
+import com.rubahapi.footballclub.util.visible
 import com.google.gson.Gson
 import com.rubahapi.footballclub.R.color.colorAccent
 import com.rubahapi.footballclub.model.League

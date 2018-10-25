@@ -11,7 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import com.dicoding.kotlinacademy.api.ApiRepository
+import com.rubahapi.footballclub.api.ApiRepository
 import com.dicoding.kotlinacademy.model.Team
 import com.google.gson.Gson
 import com.rubahapi.footballclub.main.MainAdapter

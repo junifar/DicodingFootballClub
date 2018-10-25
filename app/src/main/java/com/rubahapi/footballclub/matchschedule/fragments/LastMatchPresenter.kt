@@ -1,10 +1,9 @@
 package com.rubahapi.footballclub.matchschedule.fragments
 
-import com.dicoding.kotlinacademy.api.ApiRepository
-import com.dicoding.kotlinacademy.api.TheSportDBApi
+import com.rubahapi.footballclub.api.ApiRepository
+import com.rubahapi.footballclub.api.TheSportDBApi
 import com.google.gson.Gson
 import com.rubahapi.footballclub.model.LastMatchResponse
-import com.rubahapi.footballclub.model.NextMatchResponse
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 

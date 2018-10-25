@@ -1,7 +1,7 @@
 package com.rubahapi.footballclub.cobamatch
 
-import com.dicoding.kotlinacademy.api.ApiRepository
-import com.dicoding.kotlinacademy.api.TheSportDBApi
+import com.rubahapi.footballclub.api.ApiRepository
+import com.rubahapi.footballclub.api.TheSportDBApi
 import com.dicoding.kotlinacademy.model.TeamResponse
 import com.google.gson.Gson
 import com.rubahapi.footballclub.model.NextMatchResponse
