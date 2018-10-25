@@ -18,15 +18,20 @@
             android:name=".CobaDuluActivity"
             android:label="@string/title_activity_coba_dulu">
         </activity>
-        <activity
-            android:name=".CobaDulu2Activity"
-            android:label="@string/title_activity_coba_dulu2"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".matchschedule.MatchScheduleActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/title_activity_coba_dulu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".CobaDulu2Activity"
+            android:label="@string/title_activity_coba_dulu2"
+            android:theme="@style/AppTheme.NoActionBar">
+
         </activity>
     </application>
 

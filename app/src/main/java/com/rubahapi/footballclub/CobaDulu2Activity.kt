@@ -116,7 +116,7 @@ class CobaDulu2Activity : AppCompatActivity(), CobaDuluView {
             return when (position){
                 0 -> PlaceholderFragmentLastMatch1.newInstance(position+1)
                 1 -> PlaceholderFragmentLastMatch.newInstance(position+1)
-                else -> PlaceholderFragmentLastMatch.newInstance(position+1)
+                else -> PlaceholderFragmentLastMatch1.newInstance(position+1)
             }
         }
 
