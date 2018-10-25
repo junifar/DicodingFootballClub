@@ -14,7 +14,7 @@ class NextMatchFragment:Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_next_match, container, false)
-        rootView.section_label.text = "1Test Last Match"
+        rootView.section_label.text = "Test Next Match"
         return rootView
     }
 
