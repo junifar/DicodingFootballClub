@@ -2,6 +2,7 @@ package com.rubahapi.footballclub.matchschedule.fragments
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,6 +48,7 @@ class LastMatchFragment:Fragment(), LastMatchView{
         swipeRefresh?.onRefresh {
             presenter.getLastMatchList()
         }
+        recycler_last_match.layoutManager = LinearLayoutManager(activity?.baseContext)
 
         recycler_last_match.adapter = nextMatchAdapter
     }
