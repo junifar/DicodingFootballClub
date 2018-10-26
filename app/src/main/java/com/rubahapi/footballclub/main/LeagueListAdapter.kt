@@ -1,5 +1,6 @@
 package com.rubahapi.footballclub.main
 
+import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,7 @@ class LeagueUI: AnkoComponent<ViewGroup>{
                     width = matchParent,
                     height = wrapContent
                 )
-                padding = dip(16)
+                padding = dip(5)
                 orientation = LinearLayout.VERTICAL
 
                 textView{
@@ -41,6 +42,13 @@ class LeagueUI: AnkoComponent<ViewGroup>{
                     textSize = 16f
                 }.lparams{
                     margin = dip(5)
+                }
+                tableRow {
+                    lparams(
+                        width = matchParent,
+                        height = dip(1)
+                    )
+                    backgroundColor = Color.LTGRAY
                 }
             }
         }

@@ -10,17 +10,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
+import com.google.gson.Gson
 import com.rubahapi.footballclub.api.ApiRepository
+import com.rubahapi.footballclub.matchdetail.LastMatchDetailActivity
+import com.rubahapi.footballclub.model.LastMatch
 import com.rubahapi.footballclub.util.invisible
 import com.rubahapi.footballclub.util.visible
-import com.google.gson.Gson
-import com.rubahapi.footballclub.model.LastMatch
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.UI
 import org.jetbrains.anko.support.v4.onRefresh
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
-import org.jetbrains.anko.support.v4.toast
 
 class LastMatchFragment:Fragment(), LastMatchView{
 
@@ -32,9 +33,12 @@ class LastMatchFragment:Fragment(), LastMatchView{
     private lateinit var listLastMatch: RecyclerView
     private lateinit var progressBar: ProgressBar
 
+    private var leagueID = 0
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 //        val rootView = inflater.inflate(R.layout.fragment_last_match, container, false)
 //        return rootView
+        leagueID = arguments?.getInt("id")?: 0
         return setupUI()
     }
 
@@ -45,27 +49,25 @@ class LastMatchFragment:Fragment(), LastMatchView{
         val gson = Gson()
 
         presenter = LastMatchPresenter(this, request, gson)
-        presenter.getLastMatchList()
+        presenter.getLastMatchList(leagueID)
 
         lastMatchAdapter = LastMatchAdapter(lastMatches){
-            toast("Yeah")
+            startActivity<LastMatchDetailActivity>("item" to it)
         }
 
         swipeRefresh.onRefresh {
-            presenter.getLastMatchList()
+            presenter.getLastMatchList(leagueID)
         }
-//        recycler_last_match.layoutManager = LinearLayoutManager(activity?.baseContext)
 
         listLastMatch.adapter = lastMatchAdapter
     }
 
     companion object {
 
-        private val ARG_SECTION_NUMBER = "section_number"
-        fun newInstance(sectionNumber: Int): LastMatchFragment {
+        fun newInstance(leagueID: Int): LastMatchFragment {
             val fragment = LastMatchFragment()
             val args = Bundle()
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber)
+            args.putInt("id", leagueID)
             fragment.arguments = args
             return fragment
         }

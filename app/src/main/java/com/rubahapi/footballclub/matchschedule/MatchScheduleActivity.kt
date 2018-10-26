@@ -15,11 +15,21 @@ class MatchScheduleActivity: AppCompatActivity(){
 
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
 
+    private var leagueID:Int = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_match_schedule)
 
-        mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
+        val leagueName = intent.getStringExtra("name")
+        leagueID = intent.getIntExtra("id", 0)
+
+        toolbar.title = leagueName
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager, leagueID)
 
         container.adapter = mSectionsPagerAdapter
 
@@ -27,12 +37,12 @@ class MatchScheduleActivity: AppCompatActivity(){
         tabs.addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(container))
     }
 
-    inner class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+    inner class SectionsPagerAdapter(fm: FragmentManager, leagueID:Int) : FragmentPagerAdapter(fm) {
 
         override fun getItem(position: Int): Fragment {
             return when(position){
-                0->NextMatchFragment.newInstance(position+1)
-                else-> LastMatchFragment.newInstance(position+1)
+                0->NextMatchFragment.newInstance(leagueID)
+                else-> LastMatchFragment.newInstance(leagueID)
             }
         }
 

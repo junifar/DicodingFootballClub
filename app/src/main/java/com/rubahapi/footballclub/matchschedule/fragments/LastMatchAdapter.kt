@@ -33,7 +33,7 @@ class NextMatchUI : AnkoComponent<ViewGroup>{
         return with(ui){
             linearLayout {
                 lparams(width = matchParent, height = wrapContent)
-                padding = dip(16)
+                padding = dip(10)
                 orientation = LinearLayout.VERTICAL
 
                 textView {
@@ -90,6 +90,13 @@ class NextMatchUI : AnkoComponent<ViewGroup>{
                     }.lparams{
                         margin = dip(5)
                     }
+                }
+                tableRow {
+                    lparams(
+                        width = matchParent,
+                        height = dip(1)
+                    )
+                    backgroundColor = Color.LTGRAY
                 }
             }
         }

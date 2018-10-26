@@ -10,6 +10,7 @@ import android.widget.ProgressBar
 import com.google.gson.Gson
 import com.rubahapi.footballclub.R.color.colorAccent
 import com.rubahapi.footballclub.api.ApiRepository
+import com.rubahapi.footballclub.matchschedule.MatchScheduleActivity
 import com.rubahapi.footballclub.model.League
 import com.rubahapi.footballclub.util.invisible
 import com.rubahapi.footballclub.util.visible
@@ -79,8 +80,9 @@ class MainActivity : AppCompatActivity(), MainView {
         leaguePresenter.getLeagueList()
 
         leagueListAdapter = LeagueListAdapter(league){
-            it.leagueName?.let { it1 -> toast(it1) }
-            println(it.leagueId)
+//            it.leagueName?.let { it1 -> toast(it1) }
+//            println(it.leagueId)
+            startActivity<MatchScheduleActivity>("id" to it.leagueId, "name" to it.leagueName)
         }
         listTeam.adapter = leagueListAdapter
 

@@ -60,6 +60,13 @@ class NextMatchesUI : AnkoComponent<ViewGroup>{
                     height = wrapContent
                     padding= dip(0)
                 }
+                tableRow {
+                    lparams(
+                        width = matchParent,
+                        height = dip(1)
+                    )
+                    backgroundColor = Color.LTGRAY
+                }
             }
         }
     }

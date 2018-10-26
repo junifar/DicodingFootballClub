@@ -18,23 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tabsample.TabActivity"></activity>
-        <activity android:name=".cobamatch.CobaActivity" />
-        <activity
-            android:name=".CobaDuluActivity"
-            android:label="@string/title_activity_coba_dulu">
-        </activity>
         <activity android:name=".matchschedule.MatchScheduleActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/title_activity_coba_dulu">
+            android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".main.MainActivity">
+        </activity>
+        <activity android:name=".matchdetail.MatchDetailActivity">
 
         </activity>
-        <activity
-            android:name=".CobaDulu2Activity"
-            android:label="@string/title_activity_coba_dulu2"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity android:name=".matchdetail.LastMatchDetailActivity"
+            android:label="Detail Match"></activity>
     </application>
 
 </manifest>

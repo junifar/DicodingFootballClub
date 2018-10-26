@@ -11,19 +11,17 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import com.google.gson.Gson
-import com.rubahapi.footballclub.R
 import com.rubahapi.footballclub.api.ApiRepository
-import com.rubahapi.footballclub.model.LastMatch
+import com.rubahapi.footballclub.matchdetail.MatchDetailActivity
 import com.rubahapi.footballclub.model.NextMatch
 import com.rubahapi.footballclub.util.invisible
 import com.rubahapi.footballclub.util.visible
-import kotlinx.android.synthetic.main.fragment_next_match.view.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.UI
 import org.jetbrains.anko.support.v4.onRefresh
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
-import org.jetbrains.anko.support.v4.toast
 
 class NextMatchFragment:Fragment(), NextMatchView{
 
@@ -35,13 +33,13 @@ class NextMatchFragment:Fragment(), NextMatchView{
     private lateinit var listNextMatch: RecyclerView
     private lateinit var progressBar: ProgressBar
 
+    private var leagueID: Int = 0
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
-//        val rootView = inflater.inflate(R.layout.fragment_next_match, container, false)
-//        rootView.section_label.text = "Test Next Match"
-//        return rootView
+        leagueID = arguments?.getInt("id")?: 0
         return setupUI()
     }
 
@@ -53,26 +51,28 @@ class NextMatchFragment:Fragment(), NextMatchView{
         val gson = Gson()
 
         presenter = NextMatchPresenter(this, request, gson)
-        presenter.getNextMatchList()
+        presenter.getNextMatchList(leagueID)
 
         swipeRefresh.onRefresh {
-            presenter.getNextMatchList()
+            presenter.getNextMatchList(leagueID)
         }
 
         nextMatchAdapter = NextMatchAdapter(nextMatches){
-            toast("Yeah")
+//            toast("Yeah")
+            startActivity<MatchDetailActivity>("item" to it)
         }
 
         listNextMatch.adapter = nextMatchAdapter
     }
 
     companion object {
-        private val ARG_SECTION_NUMBER = "section_number"
+//        private val ARG_SECTION_NUMBER = "section_number"
 
-        fun newInstance(sectionNumber: Int): NextMatchFragment {
+        fun newInstance(leagueID: Int): NextMatchFragment {
             val fragment = NextMatchFragment()
             val args = Bundle()
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber)
+//            args.putInt(ARG_SECTION_NUMBER, sectionNumber)
+            args.putInt("id", leagueID)
             fragment.arguments = args
             return fragment
         }
