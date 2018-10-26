@@ -11,7 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity" />
+        <activity android:name=".main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".tabsample.TabActivity"></activity>
         <activity android:name=".cobamatch.CobaActivity" />
         <activity
@@ -21,11 +27,7 @@
         <activity android:name=".matchschedule.MatchScheduleActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/title_activity_coba_dulu">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".CobaDulu2Activity"
