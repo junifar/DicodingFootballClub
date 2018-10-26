@@ -15,8 +15,6 @@ class MatchScheduleActivity: AppCompatActivity(){
 
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
 
-//    private lateinit var toolbar: Toolbar
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_match_schedule)
@@ -43,45 +41,4 @@ class MatchScheduleActivity: AppCompatActivity(){
         }
 
     }
-
-//    private fun setupUI(){
-//        coordinatorLayout {
-//            lparams(
-//                width = matchParent,
-//                height = matchParent
-//            )
-//            fitsSystemWindows = true
-//
-//            appBarLayout {
-//                lparams(
-//                    width = matchParent,
-//                    height = wrapContent
-//                )
-//                setPadding(0, 8, 0, 0)
-//                setTheme(AppTheme_AppBarOverlay)
-//
-//                toolbar = toolbar {
-//                    title = "Match Schedule"
-//                    backgroundColor = android.R.attr.colorPrimary
-//                    popupTheme = AppTheme_PopupOverlay
-//                }.lparams(
-//                    width = matchParent,
-//                    height = android.R.attr.actionBarSize,
-//                    weight = 1f
-//                ){
-//                    scrollFlags = SCROLL_FLAG_ENTER_ALWAYS
-//                }
-//
-//                tabLayout {
-//                    lparams(
-//                        width = matchParent,
-//                        height = wrapContent
-//                    )
-//
-//                    tabItem {
-//                    }
-//                }
-//            }
-//        }
-//    }
 }
