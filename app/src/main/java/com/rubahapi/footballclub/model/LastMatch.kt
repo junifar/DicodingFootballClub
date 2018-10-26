@@ -13,6 +13,6 @@ data class LastMatch(
     val homeScore: String? = null,
     @SerializedName("intAwayScore")
     val awayScore: String? = null,
-    @SerializedName("strDate")
+    @SerializedName("dateEvent")
     val eventDate: String? = null
 )

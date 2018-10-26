@@ -1,5 +1,7 @@
 package com.rubahapi.footballclub.matchschedule.fragments
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import com.rubahapi.footballclub.R.id.event_date
 import com.rubahapi.footballclub.R.id.event_name
 import com.rubahapi.footballclub.model.NextMatch
 import org.jetbrains.anko.*
+import java.text.SimpleDateFormat
 
 class NextMatchAdapter(private val items: List<NextMatch>,
                        private val listener: (NextMatch) -> Unit): RecyclerView.Adapter<NextMatchViewHolder>(){
@@ -35,19 +38,28 @@ class NextMatchesUI : AnkoComponent<ViewGroup>{
                 orientation = LinearLayout.VERTICAL
 
                 textView {
-                    id = R.id.event_name
-                    textSize = 16f
+                    id = R.id.event_date
+                    textSize = 14f
+                    textAlignment = View.TEXT_ALIGNMENT_CENTER
+                    textColor = Color.GREEN
+                    setTypeface(null, Typeface.BOLD)
                 }.lparams{
-                    margin = dip(15)
+                    margin = dip(5)
+                    width = matchParent
+                    height = wrapContent
+                    padding = dip(0)
                 }
 
                 textView {
-                    id = R.id.event_date
+                    id = R.id.event_name
                     textSize = 16f
+                    textAlignment = View.TEXT_ALIGNMENT_CENTER
                 }.lparams{
-                    margin = dip(15)
+                    margin = dip(5)
+                    width = matchParent
+                    height = wrapContent
+                    padding= dip(0)
                 }
-
             }
         }
     }
@@ -61,7 +73,14 @@ class NextMatchViewHolder(view: View): RecyclerView.ViewHolder(view) {
     fun bindItem(match: NextMatch, listener: (NextMatch)-> Unit){
         eventName.text = match.eventName
         eventDate.text = match.eventDate.toString()
+//        eventDate.text = convertDate(match.eventDate.toString())
 
         itemView.setOnClickListener { listener(match) }
     }
+
+    private fun convertDate(value:String):String{
+        val retVal =  SimpleDateFormat("YYYY-MM-dd").parse(value)
+        return  SimpleDateFormat("E, d MM YYYY").format(retVal)
+    }
 }
+

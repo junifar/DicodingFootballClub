@@ -7,6 +7,6 @@ data class NextMatch(
     val eventID: Int? = 0,
     @SerializedName("strEvent")
     val eventName: String? = null,
-    @SerializedName("strDate")
+    @SerializedName("dateEvent")
     val eventDate: String? = null
 )

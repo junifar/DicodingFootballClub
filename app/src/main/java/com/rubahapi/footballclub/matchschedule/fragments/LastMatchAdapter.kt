@@ -1,6 +1,9 @@
 package com.rubahapi.footballclub.matchschedule.fragments
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.support.v7.widget.RecyclerView
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -34,41 +37,60 @@ class NextMatchUI : AnkoComponent<ViewGroup>{
                 orientation = LinearLayout.VERTICAL
 
                 textView {
-                    id = R.id.home_team
-                    textSize = 16f
-                }.lparams{
-                    margin = dip(15)
-                }
-
-                textView {
-                    id = R.id.away_team
-                    textSize = 16f
-                }.lparams{
-                    margin = dip(15)
-                }
-
-                textView {
-                    id = R.id.home_score
-                    textSize = 16f
-                }.lparams{
-                    margin = dip(15)
-                }
-
-                textView {
-                    id = R.id.away_score
-                    textSize = 16f
-                }.lparams{
-                    margin = dip(15)
-                }
-
-                textView {
                     id = R.id.event_date
-                    textSize = 16f
+                    textSize = 14f
+                    textColor = Color.GREEN
+                    setTypeface(null, Typeface.BOLD)
+                    textAlignment = View.TEXT_ALIGNMENT_CENTER
                 }.lparams{
-                    margin = dip(15)
+                    margin = dip(5)
+                    width = matchParent
+                    height = wrapContent
                 }
 
+                linearLayout {
+                    lparams(
+                        width = matchParent,
+                        height = wrapContent
+                    )
 
+                    gravity = Gravity.CENTER
+
+                    textView {
+                        id = R.id.home_team
+                        textSize = 16f
+                    }.lparams{
+                        margin = dip(5)
+                    }
+
+                    textView {
+                        id = R.id.home_score
+                        textSize = 16f
+                    }.lparams{
+                        margin = dip(5)
+                    }
+
+                    textView {
+                        text = "VS"
+                        textSize = 16f
+                    }.lparams{
+                        margin = dip(5)
+                    }
+
+                    textView {
+                        id = R.id.away_score
+                        textSize = 16f
+                    }.lparams{
+                        margin = dip(5)
+                    }
+
+                    textView {
+                        id = R.id.away_team
+                        textSize = 16f
+                    }.lparams{
+                        margin = dip(5)
+                    }
+                }
             }
         }
     }
