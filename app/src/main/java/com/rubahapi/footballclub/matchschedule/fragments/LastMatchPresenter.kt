@@ -1,5 +1,6 @@
 package com.rubahapi.footballclub.matchschedule.fragments
 
+import com.dicoding.kotlinacademy.model.TeamResponse
 import com.google.gson.Gson
 import com.rubahapi.footballclub.api.ApiRepository
 import com.rubahapi.footballclub.api.TheSportDBApi
@@ -13,7 +14,8 @@ class LastMatchPresenter(private val view:LastMatchFragment,
     fun getLastMatchList(leagueID:Int){
         view.showLoading()
         doAsync {
-            val data = gson.fromJson(apiRepository.doRequest(TheSportDBApi.getLastMatch(leagueID.toString())), LastMatchResponse::class.java)
+            val data = gson.fromJson(apiRepository.
+                doRequest(TheSportDBApi.getLastMatch(leagueID.toString())), LastMatchResponse::class.java)
 
             uiThread {
                 view.hideLoading()

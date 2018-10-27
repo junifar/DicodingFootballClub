@@ -9,16 +9,20 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.dicoding.kotlinacademy.model.Team
+import com.rubahapi.footballclub.api.ApiRepository
+import com.rubahapi.footballclub.matchschedule.fragments.LastMatchPresenter
+import com.google.gson.Gson
 import com.rubahapi.footballclub.model.NextMatch
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 
-class MatchDetailActivity: AppCompatActivity(){
-
+class MatchDetailActivity: AppCompatActivity(), MatchView{
     lateinit var imageMatch:ImageView
+    lateinit var presenter: MatchPresenter
+
     lateinit var dateEvent:TextView
     lateinit var item:NextMatch
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         item = intent.getParcelableExtra<NextMatch>("item")
@@ -34,6 +38,19 @@ class MatchDetailActivity: AppCompatActivity(){
             url = item.eventThumb.toString()
         }
         Picasso.get().load(url).fit().into(imageMatch)
+
+        val request = ApiRepository()
+        val gson = Gson()
+        presenter = MatchPresenter(this, request, gson)
+        item.idAway?.let { presenter.getFlag(it) }
+    }
+
+    override fun showHomeFlag(data: List<Team>) {
+        var imgUrl:String = ""
+        data.forEach {
+            imgUrl = it.teamBadge.toString()
+        }
+        Picasso.get().load(imgUrl).fit().into(imageMatch)
     }
 
     private fun setupUI(){

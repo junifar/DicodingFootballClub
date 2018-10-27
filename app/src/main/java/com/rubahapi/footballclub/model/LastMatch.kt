@@ -43,6 +43,10 @@ data class LastMatch(
     @SerializedName("strHomeLineupSubstitutes")
     val homeSubstitute: String? = null,
     @SerializedName("strAwayLineupSubstitutes")
-    val awaySubstitute: String? = null
+    val awaySubstitute: String? = null,
+    @SerializedName("idHomeTeam")
+    val idHome: Int? = 0,
+    @SerializedName("idAwayTeam")
+    val idAway: Int? = 0
 
 ) : Parcelable

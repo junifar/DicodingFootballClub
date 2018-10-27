@@ -24,15 +24,14 @@ import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
 class LastMatchFragment:Fragment(), LastMatchView{
-
     private var lastMatches: MutableList<LastMatch> = mutableListOf()
+
     lateinit var presenter: LastMatchPresenter
     private lateinit var lastMatchAdapter: LastMatchAdapter
-
     private lateinit var swipeRefresh: SwipeRefreshLayout
+
     private lateinit var listLastMatch: RecyclerView
     private lateinit var progressBar: ProgressBar
-
     private var leagueID = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -73,10 +72,10 @@ class LastMatchFragment:Fragment(), LastMatchView{
         }
 
     }
+
     override fun showLoading() {
         progressBar.visible()
     }
-
     override fun hideLoading() {
         progressBar.invisible()
     }

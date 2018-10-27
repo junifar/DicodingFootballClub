@@ -17,5 +17,9 @@ data class NextMatch(
     @SerializedName("intHomeScore")
     val homeScore: Int? = 0,
     @SerializedName("intAwayScore")
-    val awayScore: Int? = 0
+    val awayScore: Int? = 0,
+    @SerializedName("idHomeTeam")
+    val idHome: Int? = 0,
+    @SerializedName("idAwayTeam")
+    val idAway: Int? = 0
 ) : Parcelable
