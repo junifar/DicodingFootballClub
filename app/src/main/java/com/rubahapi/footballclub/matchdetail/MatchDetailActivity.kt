@@ -35,12 +35,6 @@ class MatchDetailActivity: AppCompatActivity(), MatchView{
     }
 
     private fun setupAction(){
-////        var url = "https://www.thesportsdb.com/images/media/event/thumb/vc09x41538083638.jpg"
-//        var url = "https://www.thesportsdb.com/images/media/league/fanart/xpwsrw1421853005.jpg"
-//        if (item.eventThumb != null){
-//            url = item.eventThumb.toString()
-//        }
-//        Picasso.get().load(url).fit().into(imageMatch)
 
         val request = ApiRepository()
         val gson = Gson()
@@ -81,11 +75,6 @@ class MatchDetailActivity: AppCompatActivity(), MatchView{
                 lparams(width = matchParent, height = matchParent)
                 orientation = LinearLayout.VERTICAL
 
-//                imageMatch = imageView {
-//                }.lparams(
-//                    width = dip(50),
-//                    height = dip(200)
-//                )
 
                 linearLayout {
                     lparams(

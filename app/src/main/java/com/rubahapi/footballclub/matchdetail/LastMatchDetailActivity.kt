@@ -24,7 +24,6 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
     lateinit var teamAwayName:TextView
     lateinit var presenter: LastMatchPresenter
 
-//    lateinit var imageMatch:ImageView
     lateinit var dateEvent:TextView
     lateinit var item:LastMatch
 
@@ -37,12 +36,6 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
     }
 
     private fun setupAction(){
-//        var url = "https://www.thesportsdb.com/images/media/event/thumb/vc09x41538083638.jpg"
-//        var url = "https://www.thesportsdb.com/images/media/league/fanart/xpwsrw1421853005.jpg"
-//        if (item.eventThumb != null){
-//            url = item.eventThumb.toString()
-//        }
-//        Picasso.get().load(url).fit().into(imageMatch)
         val request = ApiRepository()
         val gson = Gson()
         presenter = LastMatchPresenter(this, request, gson)
@@ -81,12 +74,6 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
             linearLayout {
                 lparams(width = matchParent, height = matchParent)
                 orientation = LinearLayout.VERTICAL
-
-//                imageMatch = imageView {
-//                }.lparams(
-//                    width = matchParent,
-//                    height = dip(200)
-//                )
 
                 linearLayout {
                     lparams(
