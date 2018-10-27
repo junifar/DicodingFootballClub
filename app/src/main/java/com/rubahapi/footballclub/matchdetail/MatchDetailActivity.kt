@@ -18,7 +18,10 @@ import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 
 class MatchDetailActivity: AppCompatActivity(), MatchView{
-    lateinit var imageMatch:ImageView
+    lateinit var imageHomeMatch:ImageView
+    lateinit var imageAwayMatch:ImageView
+    lateinit var teamHomeName:TextView
+    lateinit var teamAwayName:TextView
     lateinit var presenter: MatchPresenter
 
     lateinit var dateEvent:TextView
@@ -32,25 +35,40 @@ class MatchDetailActivity: AppCompatActivity(), MatchView{
     }
 
     private fun setupAction(){
-//        var url = "https://www.thesportsdb.com/images/media/event/thumb/vc09x41538083638.jpg"
-        var url = "https://www.thesportsdb.com/images/media/league/fanart/xpwsrw1421853005.jpg"
-        if (item.eventThumb != null){
-            url = item.eventThumb.toString()
-        }
-        Picasso.get().load(url).fit().into(imageMatch)
+////        var url = "https://www.thesportsdb.com/images/media/event/thumb/vc09x41538083638.jpg"
+//        var url = "https://www.thesportsdb.com/images/media/league/fanart/xpwsrw1421853005.jpg"
+//        if (item.eventThumb != null){
+//            url = item.eventThumb.toString()
+//        }
+//        Picasso.get().load(url).fit().into(imageMatch)
 
         val request = ApiRepository()
         val gson = Gson()
         presenter = MatchPresenter(this, request, gson)
-        item.idAway?.let { presenter.getFlag(it) }
+        item.idHome?.let { presenter.getHomeFlag(it) }
+        item.idAway?.let { presenter.getAwayFlag(it) }
     }
 
     override fun showHomeFlag(data: List<Team>) {
         var imgUrl:String = ""
+        var teamName:String = ""
         data.forEach {
             imgUrl = it.teamBadge.toString()
+            teamName = it.teamName.toString()
         }
-        Picasso.get().load(imgUrl).fit().into(imageMatch)
+        Picasso.get().load(imgUrl).fit().into(imageHomeMatch)
+        teamHomeName.text = teamName
+    }
+
+    override fun showAwayFlag(data: List<Team>) {
+        var imgUrl:String = ""
+        var teamName:String = ""
+        data.forEach {
+            imgUrl = it.teamBadge.toString()
+            teamName = it.teamName.toString()
+        }
+        Picasso.get().load(imgUrl).fit().into(imageAwayMatch)
+        teamAwayName.text = teamName
     }
 
     private fun setupUI(){
@@ -63,11 +81,61 @@ class MatchDetailActivity: AppCompatActivity(), MatchView{
                 lparams(width = matchParent, height = matchParent)
                 orientation = LinearLayout.VERTICAL
 
-                imageMatch = imageView {
-                }.lparams(
-                    width = matchParent,
-                    height = dip(200)
-                )
+//                imageMatch = imageView {
+//                }.lparams(
+//                    width = dip(50),
+//                    height = dip(200)
+//                )
+
+                linearLayout {
+                    lparams(
+                        width = matchParent,
+                        height = wrapContent
+                    ){
+                        margin = dip(20)
+                    }
+                    gravity = Gravity.CENTER
+                    orientation = LinearLayout.HORIZONTAL
+
+                    verticalLayout {
+                        imageHomeMatch = imageView {
+                        }.lparams(
+                            width = dip(75),
+                            height = dip(75)
+                        )
+                        teamHomeName = textView{
+                            textAlignment = View.TEXT_ALIGNMENT_CENTER
+                            textColor = Color.GREEN
+                        }.lparams(
+                            width = dip(75),
+                            height = wrapContent
+                        )
+                    }
+
+                    textView {
+                        text = "VS"
+                        textAlignment = View.TEXT_ALIGNMENT_CENTER
+                    }.lparams(
+                        width = dip(100),
+                        height = wrapContent
+                    )
+
+                    verticalLayout {
+                        imageAwayMatch = imageView {
+                        }.lparams(
+                            width = dip(75),
+                            height = dip(75)
+                        )
+                        teamAwayName = textView{
+                            textAlignment = View.TEXT_ALIGNMENT_CENTER
+                            textColor = Color.GREEN
+                        }.lparams(
+                            width = dip(75),
+                            height = wrapContent
+                        )
+                    }
+
+                }
 
                 dateEvent = textView {
                     text = item.eventDate.toString()

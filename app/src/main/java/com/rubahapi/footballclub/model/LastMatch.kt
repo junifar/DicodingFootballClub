@@ -44,6 +44,10 @@ data class LastMatch(
     val homeSubstitute: String? = null,
     @SerializedName("strAwayLineupSubstitutes")
     val awaySubstitute: String? = null,
+    @SerializedName("strHomeGoalDetails")
+    val homeGoalDetails: String? = null,
+    @SerializedName("strAwayGoalDetails")
+    val awayGoalDetails: String? = null,
     @SerializedName("idHomeTeam")
     val idHome: Int? = 0,
     @SerializedName("idAwayTeam")

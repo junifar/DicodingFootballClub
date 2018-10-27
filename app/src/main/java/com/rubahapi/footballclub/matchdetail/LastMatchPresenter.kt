@@ -8,9 +8,9 @@ import com.rubahapi.footballclub.matchschedule.fragments.LastMatchFragment
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class MatchPresenter(private val view: MatchDetailActivity,
-                     private val apiRepository: ApiRepository,
-                     private val gson: Gson
+class LastMatchPresenter(private val view: LastMatchDetailActivity,
+                         private val apiRepository: ApiRepository,
+                         private val gson: Gson
 ){
     fun getHomeFlag(teamID: Int){
         doAsync {

@@ -9,13 +9,22 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import com.dicoding.kotlinacademy.model.Team
+import com.google.gson.Gson
+import com.rubahapi.footballclub.api.ApiRepository
 import com.rubahapi.footballclub.model.LastMatch
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 
-class LastMatchDetailActivity: AppCompatActivity(){
+class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
 
-    lateinit var imageMatch:ImageView
+    lateinit var imageHomeMatch:ImageView
+    lateinit var imageAwayMatch:ImageView
+    lateinit var teamHomeName:TextView
+    lateinit var teamAwayName:TextView
+    lateinit var presenter: LastMatchPresenter
+
+//    lateinit var imageMatch:ImageView
     lateinit var dateEvent:TextView
     lateinit var item:LastMatch
 
@@ -29,11 +38,38 @@ class LastMatchDetailActivity: AppCompatActivity(){
 
     private fun setupAction(){
 //        var url = "https://www.thesportsdb.com/images/media/event/thumb/vc09x41538083638.jpg"
-        var url = "https://www.thesportsdb.com/images/media/league/fanart/xpwsrw1421853005.jpg"
-        if (item.eventThumb != null){
-            url = item.eventThumb.toString()
+//        var url = "https://www.thesportsdb.com/images/media/league/fanart/xpwsrw1421853005.jpg"
+//        if (item.eventThumb != null){
+//            url = item.eventThumb.toString()
+//        }
+//        Picasso.get().load(url).fit().into(imageMatch)
+        val request = ApiRepository()
+        val gson = Gson()
+        presenter = LastMatchPresenter(this, request, gson)
+        item.idHome?.let { presenter.getHomeFlag(it) }
+        item.idAway?.let { presenter.getAwayFlag(it) }
+    }
+
+    override fun showHomeFlag(data: List<Team>) {
+        var imgUrl:String = ""
+        var teamName:String = ""
+        data.forEach {
+            imgUrl = it.teamBadge.toString()
+            teamName = it.teamName.toString()
         }
-        Picasso.get().load(url).fit().into(imageMatch)
+        Picasso.get().load(imgUrl).fit().into(imageHomeMatch)
+        teamHomeName.text = teamName
+    }
+
+    override fun showAwayFlag(data: List<Team>) {
+        var imgUrl:String = ""
+        var teamName:String = ""
+        data.forEach {
+            imgUrl = it.teamBadge.toString()
+            teamName = it.teamName.toString()
+        }
+        Picasso.get().load(imgUrl).fit().into(imageAwayMatch)
+        teamAwayName.text = teamName
     }
 
     private fun setupUI(){
@@ -46,29 +82,87 @@ class LastMatchDetailActivity: AppCompatActivity(){
                 lparams(width = matchParent, height = matchParent)
                 orientation = LinearLayout.VERTICAL
 
-                imageMatch = imageView {
-                }.lparams(
-                    width = matchParent,
-                    height = dip(200)
-                )
+//                imageMatch = imageView {
+//                }.lparams(
+//                    width = matchParent,
+//                    height = dip(200)
+//                )
+
+                linearLayout {
+                    lparams(
+                        width = matchParent,
+                        height = wrapContent
+                    ){
+                        margin = dip(20)
+                    }
+                    gravity = Gravity.CENTER
+                    orientation = LinearLayout.HORIZONTAL
+
+                    verticalLayout {
+                        gravity = Gravity.CENTER
+                        imageHomeMatch = imageView {
+                        }.lparams(
+                            width = dip(75),
+                            height = dip(75)
+                        )
+                        teamHomeName = textView{
+                            textAlignment = View.TEXT_ALIGNMENT_CENTER
+                            textColor = Color.GREEN
+                        }.lparams(
+                            width = dip(120),
+                            height = wrapContent
+                        )
+                    }
+
+                    textView {
+                        text = "${item.homeScore}"
+                        textAlignment = View.TEXT_ALIGNMENT_TEXT_END
+                        setTypeface(null, Typeface.BOLD)
+                    }.lparams(
+                        width = dip(40),
+                        height = wrapContent
+                     )
+
+                    textView {
+                        text = "VS"
+                        textAlignment = View.TEXT_ALIGNMENT_CENTER
+                        setTypeface(null, Typeface.BOLD)
+                    }.lparams(
+                        width = dip(30),
+                        height = wrapContent
+                    )
+
+                    textView {
+                        text = "${item.awayScore}"
+                        textAlignment = View.TEXT_ALIGNMENT_TEXT_START
+                        setTypeface(null, Typeface.BOLD)
+                    }.lparams(
+                        width = dip(40),
+                        height = wrapContent
+                    )
+
+                    verticalLayout {
+                        gravity = Gravity.CENTER
+                        imageAwayMatch = imageView {
+                        }.lparams(
+                            width = dip(75),
+                            height = dip(75)
+                        )
+                        teamAwayName = textView{
+                            textAlignment = View.TEXT_ALIGNMENT_CENTER
+                            textColor = Color.GREEN
+                        }.lparams(
+                            width = dip(120),
+                            height = wrapContent
+                        )
+                    }
+
+                }
 
                 dateEvent = textView {
                     text = item.eventDate.toString()
                     textSize = 16f
                     textColor = Color.GREEN
-                    setTypeface(null, Typeface.BOLD)
-                    textAlignment = View.TEXT_ALIGNMENT_CENTER
-                }.lparams(
-                    width = matchParent,
-                    height = wrapContent
-                ){
-                    margin = dip(10)
-                }
-
-                dateEvent = textView {
-                    text = "${item.homeTeam} VS ${item.awayTeam}"
-                    textSize = 14f
-//                textColor = Color.GREEN
                     setTypeface(null, Typeface.BOLD)
                     textAlignment = View.TEXT_ALIGNMENT_CENTER
                 }.lparams(
@@ -94,11 +188,14 @@ class LastMatchDetailActivity: AppCompatActivity(){
                     gravity = Gravity.CENTER
 
                     textView {
-                        text = "${item.homeScore}"
-                    }
+                        text = item.homeGoalDetails
+                    }.lparams(
+                        width = dip(100),
+                        height = wrapContent
+                    )
 
                     textView{
-                        text = "Goals"
+                        text = "Goal"
                         textAlignment = View.TEXT_ALIGNMENT_CENTER
                     }.lparams(
                         width = dip(120),
@@ -106,8 +203,11 @@ class LastMatchDetailActivity: AppCompatActivity(){
                     )
 
                     textView {
-                        text = "${item.awayScore}"
-                    }
+                        text = item.awayGoalDetails
+                    }.lparams(
+                        width = dip(100),
+                        height = wrapContent
+                    )
                 }
 
                 linearLayout {
