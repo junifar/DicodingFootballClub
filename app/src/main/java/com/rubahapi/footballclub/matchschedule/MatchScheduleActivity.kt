@@ -11,6 +11,7 @@ import com.rubahapi.footballclub.matchschedule.fragments.LastMatchFragment
 import com.rubahapi.footballclub.matchschedule.fragments.NextMatchFragment
 import kotlinx.android.synthetic.main.activity_match_schedule.*
 
+
 class MatchScheduleActivity: AppCompatActivity(){
 
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null

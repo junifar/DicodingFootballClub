@@ -3,4 +3,8 @@
 
     <string name="tab_text_1">Next Match</string>
     <string name="tab_text_2">Previous Match</string>
+    <string name="title_activity_home">Football Match Schedule</string>
+    <string name="title_last_match">Last Match</string>
+    <string name="title_next_match">Next Match</string>
+    <string name="title_favorite">Favorite</string>
 </resources>
