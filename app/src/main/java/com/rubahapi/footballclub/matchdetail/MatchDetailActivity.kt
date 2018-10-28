@@ -9,9 +9,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.dicoding.kotlinacademy.model.Team
+import com.rubahapi.footballclub.model.Team
 import com.rubahapi.footballclub.api.ApiRepository
-import com.rubahapi.footballclub.matchschedule.fragments.LastMatchPresenter
 import com.google.gson.Gson
 import com.rubahapi.footballclub.model.NextMatch
 import com.squareup.picasso.Picasso

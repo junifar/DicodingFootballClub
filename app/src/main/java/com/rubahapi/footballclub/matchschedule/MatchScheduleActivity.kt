@@ -7,8 +7,8 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v7.app.AppCompatActivity
 import com.rubahapi.footballclub.R.layout.activity_match_schedule
-import com.rubahapi.footballclub.matchschedule.fragments.LastMatchFragment
-import com.rubahapi.footballclub.matchschedule.fragments.NextMatchFragment
+import com.rubahapi.footballclub.matchschedule.fragments.lastmatch.LastMatchFragment
+import com.rubahapi.footballclub.matchschedule.fragments.nextmatch.NextMatchFragment
 import kotlinx.android.synthetic.main.activity_match_schedule.*
 
 
@@ -42,7 +42,7 @@ class MatchScheduleActivity: AppCompatActivity(){
 
         override fun getItem(position: Int): Fragment {
             return when(position){
-                0->NextMatchFragment.newInstance(leagueID)
+                0-> NextMatchFragment.newInstance(leagueID)
                 else-> LastMatchFragment.newInstance(leagueID)
             }
         }

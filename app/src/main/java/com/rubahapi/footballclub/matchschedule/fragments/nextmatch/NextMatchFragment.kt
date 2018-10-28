@@ -1,4 +1,4 @@
-package com.rubahapi.footballclub.matchschedule.fragments
+package com.rubahapi.footballclub.matchschedule.fragments.nextmatch
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,6 +13,7 @@ import android.widget.ProgressBar
 import com.google.gson.Gson
 import com.rubahapi.footballclub.api.ApiRepository
 import com.rubahapi.footballclub.matchdetail.MatchDetailActivity
+import com.rubahapi.footballclub.matchschedule.fragments.NextMatchView
 import com.rubahapi.footballclub.model.NextMatch
 import com.rubahapi.footballclub.util.invisible
 import com.rubahapi.footballclub.util.visible
@@ -23,7 +24,7 @@ import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
-class NextMatchFragment:Fragment(), NextMatchView{
+class NextMatchFragment:Fragment(), NextMatchView {
 
     private var nextMatches: MutableList<NextMatch> = mutableListOf()
     lateinit var presenter: NextMatchPresenter
@@ -40,6 +41,7 @@ class NextMatchFragment:Fragment(), NextMatchView{
         container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         leagueID = arguments?.getInt("id")?: 0
+        leagueID = 4328
         return setupUI()
     }
 
@@ -57,8 +59,8 @@ class NextMatchFragment:Fragment(), NextMatchView{
             presenter.getNextMatchList(leagueID)
         }
 
-        nextMatchAdapter = NextMatchAdapter(nextMatches){
-//            toast("Yeah")
+        nextMatchAdapter = NextMatchAdapter(nextMatches) {
+            //            toast("Yeah")
             startActivity<MatchDetailActivity>("item" to it)
         }
 

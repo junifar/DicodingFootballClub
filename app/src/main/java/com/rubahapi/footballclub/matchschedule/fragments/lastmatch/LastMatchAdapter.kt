@@ -1,4 +1,4 @@
-package com.rubahapi.footballclub.matchschedule.fragments
+package com.rubahapi.footballclub.matchschedule.fragments.lastmatch
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -17,7 +17,11 @@ class LastMatchAdapter(private val items: List<LastMatch>,
                        private val listener: (LastMatch) -> Unit): RecyclerView.Adapter<LastMatchViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LastMatchViewHolder {
-        return LastMatchViewHolder(NextMatchUI().createView(AnkoContext.create(parent.context, parent)))
+        return LastMatchViewHolder(
+            NextMatchUI().createView(
+                AnkoContext.create(parent.context, parent)
+            )
+        )
     }
 
     override fun getItemCount(): Int  = items.size

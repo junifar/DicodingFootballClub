@@ -1,4 +1,4 @@
-package com.rubahapi.footballclub.matchschedule.fragments
+package com.rubahapi.footballclub.matchschedule.fragments.nextmatch
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -18,7 +18,11 @@ class NextMatchAdapter(private val items: List<NextMatch>,
                        private val listener: (NextMatch) -> Unit): RecyclerView.Adapter<NextMatchViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NextMatchViewHolder {
-        return NextMatchViewHolder(NextMatchesUI().createView(AnkoContext.create(parent.context, parent)))
+        return NextMatchViewHolder(
+            NextMatchesUI().createView(
+                AnkoContext.create(parent.context, parent)
+            )
+        )
     }
 
     override fun getItemCount(): Int  = items.size

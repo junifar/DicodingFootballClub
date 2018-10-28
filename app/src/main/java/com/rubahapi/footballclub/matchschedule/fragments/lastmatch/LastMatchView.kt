@@ -1,6 +1,5 @@
-package com.rubahapi.footballclub.matchschedule.fragments
+package com.rubahapi.footballclub.matchschedule.fragments.lastmatch
 
-import com.dicoding.kotlinacademy.model.Team
 import com.rubahapi.footballclub.model.LastMatch
 
 interface LastMatchView{

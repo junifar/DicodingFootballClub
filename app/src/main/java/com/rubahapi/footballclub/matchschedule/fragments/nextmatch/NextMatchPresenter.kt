@@ -1,4 +1,4 @@
-package com.rubahapi.footballclub.matchschedule.fragments
+package com.rubahapi.footballclub.matchschedule.fragments.nextmatch
 
 import com.google.gson.Gson
 import com.rubahapi.footballclub.api.ApiRepository
@@ -7,7 +7,7 @@ import com.rubahapi.footballclub.model.NextMatchResponse
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class NextMatchPresenter(private val view:NextMatchFragment,
+class NextMatchPresenter(private val view: NextMatchFragment,
                          private val apiRepository: ApiRepository,
                          private val gson: Gson){
     fun getNextMatchList(leagueID:Int){

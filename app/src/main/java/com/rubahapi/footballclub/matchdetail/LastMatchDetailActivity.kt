@@ -1,20 +1,36 @@
 package com.rubahapi.footballclub.matchdetail
 
+import android.database.sqlite.SQLiteConstraintException
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.dicoding.kotlinacademy.model.Team
 import com.google.gson.Gson
+import com.rubahapi.footballclub.R.drawable.ic_add_to_favorites
+import com.rubahapi.footballclub.R.drawable.ic_added_to_favorites
+import com.rubahapi.footballclub.R.id.add_to_favorite
+import com.rubahapi.footballclub.R.menu.match_detail_menu
 import com.rubahapi.footballclub.api.ApiRepository
+import com.rubahapi.footballclub.db.Favorite
+import com.rubahapi.footballclub.db.database
 import com.rubahapi.footballclub.model.LastMatch
+import com.rubahapi.footballclub.model.Team
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
+import org.jetbrains.anko.design.snackbar
 
 class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
 
@@ -24,8 +40,14 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
     lateinit var teamAwayName:TextView
     lateinit var presenter: LastMatchPresenter
 
-    lateinit var dateEvent:TextView
-    lateinit var item:LastMatch
+    private var menuItem: Menu? = null
+    private var isFavorite: Boolean = false
+
+    private lateinit var id: String
+
+    private lateinit var dateEvent:TextView
+    private lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var item:LastMatch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +63,12 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
         presenter = LastMatchPresenter(this, request, gson)
         item.idHome?.let { presenter.getHomeFlag(it) }
         item.idAway?.let { presenter.getAwayFlag(it) }
+
+        id = item.eventID.toString()
+        favoriteState()
+
+        supportActionBar?.title = "Match Detail"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun showHomeFlag(data: List<Team>) {
@@ -65,6 +93,98 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
         teamAwayName.text = teamName
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(match_detail_menu, menu)
+        menuItem = menu
+        setFavorite()
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when (item?.itemId) {
+            android.R.id.home -> {
+                finish()
+                true
+            }
+            add_to_favorite -> {
+                if (isFavorite) removeFromFavorite() else addToFavorite()
+
+                isFavorite = !isFavorite
+                setFavorite()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun removeFromFavorite(){
+        try {
+            database.use {
+                delete(Favorite.TABLE_FAVORITE, "(EVENT_ID = {id})",
+                    "id" to id)
+            }
+//            snackbar(swipeRefresh, "Removed to favorite").show()
+            toast("Success")
+        } catch (e: SQLiteConstraintException){
+//            snackbar(swipeRefresh, e.localizedMessage).show()
+            toast("Failed")
+        }
+    }
+
+    private fun addToFavorite(){
+        try {
+            database.use {
+                insert(Favorite.TABLE_FAVORITE,
+                    Favorite.eventID to item.eventID,
+                    Favorite.homeTeam to item.homeTeam,
+                    Favorite.awayTeam to item.awayTeam,
+                    Favorite.homeScore to item.homeScore,
+                    Favorite.awayScore to item.awayScore,
+                    Favorite.homeShoot to item.homeShoot,
+                    Favorite.awayShoot to item.awayShoot,
+                    Favorite.eventDate to item.eventDate,
+                    Favorite.eventThumb to item.eventThumb,
+                    Favorite.homeGoalKeeper to item.homeGoalKeeper,
+                    Favorite.awayGoalKeeper to item.awayGoalKeeper,
+                    Favorite.homeDefense to item.homeDefense,
+                    Favorite.awayDefense to item.awayDefense,
+                    Favorite.homeMidField to item.homeMidField,
+                    Favorite.awayMidField to item.awayMidField,
+                    Favorite.homeForward to item.homeForward,
+                    Favorite.awayForward to item.awayForward,
+                    Favorite.homeSubstitute to item.homeSubstitute,
+                    Favorite.awaySubstitute to item.awaySubstitute,
+                    Favorite.homeGoalDetails to item.homeGoalDetails,
+                    Favorite.awayGoalDetails to item.awayGoalDetails,
+                    Favorite.idHome to item.idHome,
+                    Favorite.idAway to item.idAway)
+            }
+//            snackbar(swipeRefresh, "Added to favorite").show()
+            toast("a")
+        } catch (e: SQLiteConstraintException){
+//            snackbar(swipeRefresh, e.localizedMessage).show()
+            toast("b")
+        }
+    }
+
+    private fun setFavorite() {
+        if (isFavorite)
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_added_to_favorites)
+        else
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, ic_add_to_favorites)
+    }
+
+    private fun favoriteState(){
+        database.use {
+            val result = select(Favorite.TABLE_FAVORITE)
+                .whereArgs("(EVENT_ID = {id})",
+                    "id" to id)
+            val favorite = result.parseList(classParser<Favorite>())
+            if (!favorite.isEmpty()) isFavorite = true
+        }
+    }
+
     private fun setupUI(){
         scrollView{
             lparams(
@@ -79,7 +199,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                     lparams(
                         width = matchParent,
                         height = wrapContent
-                    ){
+                    ) {
                         margin = dip(20)
                     }
                     gravity = Gravity.CENTER
@@ -92,7 +212,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                             width = dip(75),
                             height = dip(75)
                         )
-                        teamHomeName = textView{
+                        teamHomeName = textView {
                             textAlignment = View.TEXT_ALIGNMENT_CENTER
                             textColor = Color.GREEN
                         }.lparams(
@@ -108,7 +228,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                     }.lparams(
                         width = dip(40),
                         height = wrapContent
-                     )
+                    )
 
                     textView {
                         text = "VS"
@@ -135,7 +255,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                             width = dip(75),
                             height = dip(75)
                         )
-                        teamAwayName = textView{
+                        teamAwayName = textView {
                             textAlignment = View.TEXT_ALIGNMENT_CENTER
                             textColor = Color.GREEN
                         }.lparams(
@@ -155,7 +275,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                 }.lparams(
                     width = matchParent,
                     height = wrapContent
-                ){
+                ) {
                     margin = dip(10)
                 }
 
@@ -168,7 +288,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                 }
 
                 linearLayout {
-                    lparams(width = matchParent, height = wrapContent){
+                    lparams(width = matchParent, height = wrapContent) {
                         margin = dip(5)
                     }
                     orientation = LinearLayout.HORIZONTAL
@@ -181,7 +301,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                         height = wrapContent
                     )
 
-                    textView{
+                    textView {
                         text = "Goal"
                         textAlignment = View.TEXT_ALIGNMENT_CENTER
                     }.lparams(
@@ -198,7 +318,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                 }
 
                 linearLayout {
-                    lparams(width = matchParent, height = wrapContent){
+                    lparams(width = matchParent, height = wrapContent) {
                         margin = dip(5)
                     }
                     orientation = LinearLayout.HORIZONTAL
@@ -208,7 +328,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                         text = item.homeShoot
                     }
 
-                    textView{
+                    textView {
                         text = "Shoot"
                         textAlignment = View.TEXT_ALIGNMENT_CENTER
                     }.lparams(
@@ -237,12 +357,12 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                 }.lparams(
                     width = matchParent,
                     height = wrapContent
-                ){
+                ) {
                     margin = dip(10)
                 }
 
                 linearLayout {
-                    lparams(width = matchParent, height = wrapContent){
+                    lparams(width = matchParent, height = wrapContent) {
                         margin = dip(5)
                     }
                     orientation = LinearLayout.HORIZONTAL
@@ -255,7 +375,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                         height = wrapContent
                     )
 
-                    textView{
+                    textView {
                         text = "Goal Keeper"
                         textAlignment = View.TEXT_ALIGNMENT_CENTER
                     }.lparams(
@@ -280,7 +400,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                 }
 
                 linearLayout {
-                    lparams(width = matchParent, height = wrapContent){
+                    lparams(width = matchParent, height = wrapContent) {
                         margin = dip(5)
                     }
                     orientation = LinearLayout.HORIZONTAL
@@ -293,7 +413,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                         height = wrapContent
                     )
 
-                    textView{
+                    textView {
                         text = "Defense"
                         textAlignment = View.TEXT_ALIGNMENT_CENTER
                     }.lparams(
@@ -318,7 +438,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                 }
 
                 linearLayout {
-                    lparams(width = matchParent, height = wrapContent){
+                    lparams(width = matchParent, height = wrapContent) {
                         margin = dip(5)
                     }
                     orientation = LinearLayout.HORIZONTAL
@@ -331,7 +451,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                         height = wrapContent
                     )
 
-                    textView{
+                    textView {
                         text = "Midlle Field"
                         textAlignment = View.TEXT_ALIGNMENT_CENTER
                     }.lparams(
@@ -356,7 +476,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                 }
 
                 linearLayout {
-                    lparams(width = matchParent, height = wrapContent){
+                    lparams(width = matchParent, height = wrapContent) {
                         margin = dip(5)
                     }
                     orientation = LinearLayout.HORIZONTAL
@@ -369,7 +489,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                         height = wrapContent
                     )
 
-                    textView{
+                    textView {
                         text = "Forward"
                         textAlignment = View.TEXT_ALIGNMENT_CENTER
                     }.lparams(
@@ -394,7 +514,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                 }
 
                 linearLayout {
-                    lparams(width = matchParent, height = wrapContent){
+                    lparams(width = matchParent, height = wrapContent) {
                         margin = dip(5)
                     }
                     orientation = LinearLayout.HORIZONTAL
@@ -407,7 +527,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                         height = wrapContent
                     )
 
-                    textView{
+                    textView {
                         text = "Substitute"
                         textAlignment = View.TEXT_ALIGNMENT_CENTER
                     }.lparams(
@@ -430,6 +550,15 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                     backgroundColor = Color.LTGRAY
                 }
             }
+//            swipeRefresh = swipeRefreshLayout {
+//                setColorSchemeResources(
+//                    colorAccent,
+//                    android.R.color.holo_green_light,
+//                    android.R.color.holo_orange_light,
+//                    android.R.color.holo_red_light
+//                )
+//
+//            }
 
         }
     }

@@ -4,7 +4,6 @@ import com.dicoding.kotlinacademy.model.TeamResponse
 import com.google.gson.Gson
 import com.rubahapi.footballclub.api.ApiRepository
 import com.rubahapi.footballclub.api.TheSportDBApi
-import com.rubahapi.footballclub.matchschedule.fragments.LastMatchFragment
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 

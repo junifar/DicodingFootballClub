@@ -1,4 +1,4 @@
-package com.dicoding.kotlinacademy.model
+package com.rubahapi.footballclub.model
 
 import com.google.gson.annotations.SerializedName
 

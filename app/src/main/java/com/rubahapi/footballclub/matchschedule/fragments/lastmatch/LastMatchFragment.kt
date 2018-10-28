@@ -1,4 +1,4 @@
-package com.rubahapi.footballclub.matchschedule.fragments
+package com.rubahapi.footballclub.matchschedule.fragments.lastmatch
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -23,7 +23,7 @@ import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
-class LastMatchFragment:Fragment(), LastMatchView{
+class LastMatchFragment:Fragment(), LastMatchView {
     private var lastMatches: MutableList<LastMatch> = mutableListOf()
 
     lateinit var presenter: LastMatchPresenter
@@ -37,7 +37,7 @@ class LastMatchFragment:Fragment(), LastMatchView{
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 //        val rootView = inflater.inflate(R.layout.fragment_last_match, container, false)
 //        return rootView
-        leagueID = arguments?.getInt("id")?: 0
+        leagueID = arguments?.getInt("id")?: 4328
         return setupUI()
     }
 
@@ -50,7 +50,7 @@ class LastMatchFragment:Fragment(), LastMatchView{
         presenter = LastMatchPresenter(this, request, gson)
         presenter.getLastMatchList(leagueID)
 
-        lastMatchAdapter = LastMatchAdapter(lastMatches){
+        lastMatchAdapter = LastMatchAdapter(lastMatches) {
             startActivity<LastMatchDetailActivity>("item" to it)
         }
 
