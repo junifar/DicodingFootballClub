@@ -28,7 +28,7 @@ class MatchDetailActivity: AppCompatActivity(), MatchView{
     lateinit var item:NextMatch
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        item = intent.getParcelableExtra<NextMatch>("item")
+        item = intent.getParcelableExtra("item")
 
         setupUI()
         setupAction()
@@ -44,8 +44,8 @@ class MatchDetailActivity: AppCompatActivity(), MatchView{
     }
 
     override fun showHomeFlag(data: List<Team>) {
-        var imgUrl:String = ""
-        var teamName:String = ""
+        var imgUrl = ""
+        var teamName = ""
         data.forEach {
             imgUrl = it.teamBadge.toString()
             teamName = it.teamName.toString()
@@ -55,8 +55,8 @@ class MatchDetailActivity: AppCompatActivity(), MatchView{
     }
 
     override fun showAwayFlag(data: List<Team>) {
-        var imgUrl:String = ""
-        var teamName:String = ""
+        var imgUrl = ""
+        var teamName = ""
         data.forEach {
             imgUrl = it.teamBadge.toString()
             teamName = it.teamName.toString()

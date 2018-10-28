@@ -44,8 +44,8 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
     }
 
     override fun showHomeFlag(data: List<Team>) {
-        var imgUrl:String = ""
-        var teamName:String = ""
+        var imgUrl = ""
+        var teamName = ""
         data.forEach {
             imgUrl = it.teamBadge.toString()
             teamName = it.teamName.toString()
@@ -55,8 +55,8 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
     }
 
     override fun showAwayFlag(data: List<Team>) {
-        var imgUrl:String = ""
-        var teamName:String = ""
+        var imgUrl = ""
+        var teamName = ""
         data.forEach {
             imgUrl = it.teamBadge.toString()
             teamName = it.teamName.toString()

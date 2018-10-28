@@ -2,21 +2,18 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
-    android:layout_width="match_parent"
+                                                 android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".matchschedule.MatchScheduleActivity">
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
+            android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/appbar_padding_top"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            app:title="@string/app_name"
+                app:title="@string/app_name"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_weight="1"
@@ -27,19 +24,16 @@
         </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
-            android:layout_width="match_parent"
+                android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.design.widget.TabItem
-                android:id="@+id/tabItem"
-                android:layout_width="wrap_content"
+                    android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab_text_1"/>
 
             <android.support.design.widget.TabItem
-                android:id="@+id/tabItem2"
-                android:layout_width="wrap_content"
+                    android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tab_text_2"/>
 
