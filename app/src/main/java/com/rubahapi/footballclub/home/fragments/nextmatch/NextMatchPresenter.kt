@@ -1,24 +1,23 @@
-package com.rubahapi.footballclub.matchschedule.fragments.lastmatch
+package com.rubahapi.footballclub.home.fragments.nextmatch
 
 import com.google.gson.Gson
 import com.rubahapi.footballclub.api.ApiRepository
 import com.rubahapi.footballclub.api.TheSportDBApi
-import com.rubahapi.footballclub.model.LastMatchResponse
+import com.rubahapi.footballclub.model.NextMatchResponse
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class LastMatchPresenter(private val view: LastMatchFragment,
+class NextMatchPresenter(private val view: NextMatchFragment,
                          private val apiRepository: ApiRepository,
                          private val gson: Gson){
-    fun getLastMatchList(leagueID:Int){
+    fun getNextMatchList(leagueID:Int){
         view.showLoading()
         doAsync {
-            val data = gson.fromJson(apiRepository.
-                doRequest(TheSportDBApi.getLastMatch(leagueID.toString())), LastMatchResponse::class.java)
+            val data = gson.fromJson(apiRepository.doRequest(TheSportDBApi.getNextMatch(leagueID.toString())), NextMatchResponse::class.java)
 
             uiThread {
                 view.hideLoading()
-                view.showLastMatchList(data.lastMatches)
+                view.showNextMatchList(data.nextMatches)
             }
         }
     }

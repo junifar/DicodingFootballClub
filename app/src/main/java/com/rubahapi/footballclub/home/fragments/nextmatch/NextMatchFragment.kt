@@ -1,4 +1,4 @@
-package com.rubahapi.footballclub.matchschedule.fragments.nextmatch
+package com.rubahapi.footballclub.home.fragments.nextmatch
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,7 +13,7 @@ import android.widget.ProgressBar
 import com.google.gson.Gson
 import com.rubahapi.footballclub.api.ApiRepository
 import com.rubahapi.footballclub.matchdetail.MatchDetailActivity
-import com.rubahapi.footballclub.matchschedule.fragments.NextMatchView
+import com.rubahapi.footballclub.home.fragments.NextMatchView
 import com.rubahapi.footballclub.model.NextMatch
 import com.rubahapi.footballclub.util.invisible
 import com.rubahapi.footballclub.util.visible

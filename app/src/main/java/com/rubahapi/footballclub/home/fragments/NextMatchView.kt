@@ -1,4 +1,4 @@
-package com.rubahapi.footballclub.matchschedule.fragments
+package com.rubahapi.footballclub.home.fragments
 
 import com.rubahapi.footballclub.model.NextMatch
 

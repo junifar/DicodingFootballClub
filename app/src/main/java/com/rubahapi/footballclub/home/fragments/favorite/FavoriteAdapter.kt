@@ -1,4 +1,4 @@
-package com.rubahapi.footballclub.matchschedule.fragments.favorite
+package com.rubahapi.footballclub.home.fragments.favorite
 
 import android.graphics.Color
 import android.graphics.Typeface
@@ -104,8 +104,8 @@ class FavoriteViewHolder(view: View): RecyclerView.ViewHolder(view) {
     fun bindItem(favorite: Favorite, listener: (Favorite) -> Unit) {
         homeTeam.text = favorite.homeTeam
         awayTeam.text = favorite.awayTeam
-        homeScore.text = favorite.homeScore
-        awayScore.text = favorite.awayScore
+        homeScore.text = favorite.homeScore ?: "0"
+        awayScore.text = favorite.awayScore ?: "0"
         eventDate.text = favorite.eventDate
         itemView.onClick { listener(favorite) }
     }

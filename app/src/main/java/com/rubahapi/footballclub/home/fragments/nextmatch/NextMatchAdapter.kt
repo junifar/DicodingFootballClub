@@ -1,4 +1,4 @@
-package com.rubahapi.footballclub.matchschedule.fragments.nextmatch
+package com.rubahapi.footballclub.home.fragments.nextmatch
 
 import android.graphics.Color
 import android.graphics.Typeface

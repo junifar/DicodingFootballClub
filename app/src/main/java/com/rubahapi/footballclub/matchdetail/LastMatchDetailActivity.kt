@@ -13,6 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import com.google.gson.Gson
 import com.rubahapi.footballclub.R.drawable.ic_add_to_favorites
@@ -30,6 +31,7 @@ import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
+import org.jetbrains.anko.design.snackbar
 
 class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
 
@@ -45,7 +47,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
     private lateinit var id: String
 
     private lateinit var dateEvent:TextView
-    private lateinit var swipeRefresh: SwipeRefreshLayout
+    private lateinit var scrollView: ScrollView
     private lateinit var item:LastMatch
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,11 +125,9 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                 delete(Favorite.TABLE_FAVORITE, "(EVENT_ID = {id})",
                     "id" to id)
             }
-//            snackbar(swipeRefresh, "Removed to favorite").show()
-            toast("Success")
+            snackbar(scrollView, "Removed to favorite").show()
         } catch (e: SQLiteConstraintException){
-//            snackbar(swipeRefresh, e.localizedMessage).show()
-            toast("Failed")
+            snackbar(scrollView, e.localizedMessage).show()
         }
     }
 
@@ -159,11 +159,9 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                     Favorite.idHome to item.idHome,
                     Favorite.idAway to item.idAway)
             }
-//            snackbar(swipeRefresh, "Added to favorite").show()
-            toast("a")
+            snackbar(scrollView, "Added to favorite").show()
         } catch (e: SQLiteConstraintException){
-//            snackbar(swipeRefresh, e.localizedMessage).show()
-            toast("b")
+            snackbar(scrollView, e.localizedMessage).show()
         }
     }
 
@@ -186,7 +184,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
     }
 
     private fun setupUI(){
-        scrollView{
+        scrollView = scrollView{
             lparams(
                 width = matchParent,
                 height = matchParent
@@ -550,15 +548,6 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                     backgroundColor = Color.LTGRAY
                 }
             }
-//            swipeRefresh = swipeRefreshLayout {
-//                setColorSchemeResources(
-//                    colorAccent,
-//                    android.R.color.holo_green_light,
-//                    android.R.color.holo_orange_light,
-//                    android.R.color.holo_red_light
-//                )
-//
-//            }
 
         }
     }
