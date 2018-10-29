@@ -1,7 +1,11 @@
 package com.rubahapi.footballclub.db
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Favorite(val id: Long?,
-                    val eventID: Int? = 0,
+                    val eventID: String? = null,
                     val homeTeam: String? = null,
                     val awayTeam: String? = null,
                     val homeScore: String? = null,
@@ -22,10 +26,9 @@ data class Favorite(val id: Long?,
                     val awaySubstitute: String? = null,
                     val homeGoalDetails: String? = null,
                     val awayGoalDetails: String? = null,
-                    val idHome: Int? = 0,
-                    val idAway: Int? = 0
-                    )
-{
+                    val idHome: String? = null,
+                    val idAway: String? = null
+                    ) : Parcelable {
     companion object {
         const val TABLE_FAVORITE   = "TABLE_FAVORITE"
         const val ID               = "ID_"

@@ -30,7 +30,6 @@ import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.db.select
-import org.jetbrains.anko.design.snackbar
 
 class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
 
@@ -179,7 +178,8 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
         database.use {
             val result = select(Favorite.TABLE_FAVORITE)
                 .whereArgs("(EVENT_ID = {id})",
-                    "id" to id)
+                    "id" to id
+                )
             val favorite = result.parseList(classParser<Favorite>())
             if (!favorite.isEmpty()) isFavorite = true
         }

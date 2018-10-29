@@ -3,8 +3,8 @@ package com.rubahapi.footballclub.home
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.rubahapi.footballclub.R
-import com.rubahapi.footballclub.R.id.navigation_last_match
-import com.rubahapi.footballclub.R.id.navigation_next_match
+import com.rubahapi.footballclub.R.id.*
+import com.rubahapi.footballclub.matchschedule.fragments.favorite.FavoriteFragment
 import com.rubahapi.footballclub.matchschedule.fragments.lastmatch.LastMatchFragment
 import com.rubahapi.footballclub.matchschedule.fragments.nextmatch.NextMatchFragment
 import kotlinx.android.synthetic.main.activity_home.*
@@ -43,8 +43,20 @@ class HomeActivity : AppCompatActivity() {
                     loadLastMatchFragment(savedInstanceState)
                 navigation_next_match ->
                     loadNextMatchFragment(savedInstanceState)
+                navigation_favorite ->
+                    loadFavoriteFragment(savedInstanceState)
             }
             true
+        }
+    }
+
+    private fun loadFavoriteFragment(savedInstanceState: Bundle?){
+        if(savedInstanceState == null){
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_container,
+                    FavoriteFragment(), FavoriteFragment::class.java.simpleName)
+                .commit()
         }
     }
 
