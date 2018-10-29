@@ -17,6 +17,9 @@ class HomeActivity : AppCompatActivity() {
 
         loadLastMatchFragment(savedInstanceState)
 
+        supportActionBar?.title = "Match Detail"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         navigation.setOnNavigationItemSelectedListener{item->
             when (item.itemId){
                 navigation_last_match ->

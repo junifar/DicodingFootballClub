@@ -23,7 +23,7 @@ import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
-class LastMatchFragment:Fragment(), LastMatchView {
+class LastMatchFragment :Fragment(), LastMatchView {
     private var lastMatches: MutableList<LastMatch> = mutableListOf()
 
     lateinit var presenter: LastMatchPresenter

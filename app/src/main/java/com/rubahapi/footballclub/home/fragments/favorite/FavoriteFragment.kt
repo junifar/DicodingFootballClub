@@ -32,6 +32,8 @@ class FavoriteFragment : Fragment(), AnkoComponent<Context>, FavoriteView{
     private lateinit var adapter: FavoriteAdapter
     private lateinit var progressBar: ProgressBar
 
+
+
     override fun createView(ui: AnkoContext<Context>): View {
         return setupUI(ui)
     }
