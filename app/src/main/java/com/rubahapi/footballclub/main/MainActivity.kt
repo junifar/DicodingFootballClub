@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), MainView {
         leaguePresenter.getLeagueList()
 
         leagueListAdapter = LeagueListAdapter(league){
-            startActivity<HomeActivity>("id" to it.leagueId.toString(), "name" to it.leagueName)
+            startActivity<HomeActivity>("id" to it.leagueId, "name" to it.leagueName)
         }
         listTeam.adapter = leagueListAdapter
 
