@@ -11,17 +11,13 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".matchdetail.MatchDetailActivity">
-        </activity>
+        <activity android:name=".matchdetail.MatchDetailActivity"/>
         <activity
                 android:name=".matchdetail.LastMatchDetailActivity"
                 android:label="Detail Match"/>
         <activity
                 android:name=".home.HomeActivity"
-                android:label="@string/title_activity_home">
-
-
-        </activity>
+                android:label="@string/title_activity_home"/>
 
         <activity android:name=".favoritedetail.FavoriteDetailActivity"/>
         <activity android:name=".main.MainActivity">

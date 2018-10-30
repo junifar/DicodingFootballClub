@@ -62,10 +62,6 @@ class LastMatchFragment :Fragment(), LastMatchView {
         listLastMatch.adapter = lastMatchAdapter
     }
 
-    companion object {
-
-    }
-
     override fun showLoading() {
         progressBar.visible()
     }
