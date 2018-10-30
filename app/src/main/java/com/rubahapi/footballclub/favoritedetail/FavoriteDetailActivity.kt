@@ -32,12 +32,12 @@ class FavoriteDetailActivity: AppCompatActivity(), FavoriteDetailView{
     private lateinit var eventID: String
     private lateinit var item: Favorite
 
-    lateinit var presenter: FavoriteDetailPresenter
+    private lateinit var presenter: FavoriteDetailPresenter
 
-    lateinit var imageHomeMatch: ImageView
-    lateinit var imageAwayMatch: ImageView
-    lateinit var teamHomeName:TextView
-    lateinit var teamAwayName:TextView
+    private lateinit var imageHomeMatch: ImageView
+    private lateinit var imageAwayMatch: ImageView
+    private lateinit var teamHomeName:TextView
+    private lateinit var teamAwayName:TextView
     lateinit var scrollView: ScrollView
 
     private var menuItem: Menu? = null
@@ -457,7 +457,7 @@ class FavoriteDetailActivity: AppCompatActivity(), FavoriteDetailView{
                     )
 
                     textView {
-                        text = "Midlle Field"
+                        text = "Middle Field"
                         textAlignment = View.TEXT_ALIGNMENT_CENTER
                     }.lparams(
                         width = dip(120),

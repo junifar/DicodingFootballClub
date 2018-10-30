@@ -12,7 +12,6 @@ import com.rubahapi.footballclub.R.id.event_date
 import com.rubahapi.footballclub.R.id.event_name
 import com.rubahapi.footballclub.model.NextMatch
 import org.jetbrains.anko.*
-import java.text.SimpleDateFormat
 
 class NextMatchAdapter(private val items: List<NextMatch>,
                        private val listener: (NextMatch) -> Unit): RecyclerView.Adapter<NextMatchViewHolder>(){
@@ -89,9 +88,5 @@ class NextMatchViewHolder(view: View): RecyclerView.ViewHolder(view) {
         itemView.setOnClickListener { listener(match) }
     }
 
-    private fun convertDate(value:String):String{
-        val retVal =  SimpleDateFormat("YYYY-MM-dd").parse(value)
-        return  SimpleDateFormat("E, d MM YYYY").format(retVal)
-    }
 }
 

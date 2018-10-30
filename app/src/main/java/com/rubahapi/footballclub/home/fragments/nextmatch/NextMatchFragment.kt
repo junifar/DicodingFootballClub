@@ -27,7 +27,7 @@ import org.jetbrains.anko.support.v4.swipeRefreshLayout
 class NextMatchFragment:Fragment(), NextMatchView {
 
     private var nextMatches: MutableList<NextMatch> = mutableListOf()
-    lateinit var presenter: NextMatchPresenter
+    private lateinit var presenter: NextMatchPresenter
     private lateinit var nextMatchAdapter: NextMatchAdapter
 
     private lateinit var swipeRefresh: SwipeRefreshLayout
@@ -69,14 +69,6 @@ class NextMatchFragment:Fragment(), NextMatchView {
     companion object {
 //        private val ARG_SECTION_NUMBER = "section_number"
 
-        fun newInstance(leagueID: Int): NextMatchFragment {
-            val fragment = NextMatchFragment()
-            val args = Bundle()
-//            args.putInt(ARG_SECTION_NUMBER, sectionNumber)
-            args.putInt("id", leagueID)
-            fragment.arguments = args
-            return fragment
-        }
     }
 
     override fun showLoading() {

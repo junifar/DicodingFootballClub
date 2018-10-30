@@ -1,6 +1,6 @@
 package com.rubahapi.footballclub.matchdetail
 
-import com.dicoding.kotlinacademy.model.TeamResponse
+import com.rubahapi.footballclub.model.TeamResponse
 import com.google.gson.Gson
 import com.rubahapi.footballclub.api.ApiRepository
 import com.rubahapi.footballclub.api.TheSportDBApi

@@ -41,7 +41,7 @@ data class Favorite(val id: Long?,
         const val awayShoot        = "AWAY_SHOOT"
         const val eventDate        = "EVENT_DATE"
         const val eventThumb       = "EVENT_THUMB"
-        const val homeGoalKeeper   = "HOMDE_GOAL_KEEPER"
+        const val homeGoalKeeper   = "HOME_GOAL_KEEPER"
         const val awayGoalKeeper   = "AWAY_GOAL_KEEPER"
         const val homeDefense      = "HOME_DEFENSE"
         const val awayDefense      = "AWAY_DEFENSE"

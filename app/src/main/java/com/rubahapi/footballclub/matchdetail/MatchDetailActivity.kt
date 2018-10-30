@@ -14,13 +14,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
-import com.rubahapi.footballclub.model.Team
-import com.rubahapi.footballclub.api.ApiRepository
 import com.google.gson.Gson
 import com.rubahapi.footballclub.R
+import com.rubahapi.footballclub.api.ApiRepository
 import com.rubahapi.footballclub.db.Favorite
 import com.rubahapi.footballclub.db.database
 import com.rubahapi.footballclub.model.NextMatch
+import com.rubahapi.footballclub.model.Team
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.*
 import org.jetbrains.anko.db.classParser
@@ -30,18 +30,18 @@ import org.jetbrains.anko.db.select
 import org.jetbrains.anko.design.snackbar
 
 class MatchDetailActivity: AppCompatActivity(), MatchView{
-    lateinit var imageHomeMatch:ImageView
-    lateinit var imageAwayMatch:ImageView
-    lateinit var teamHomeName:TextView
-    lateinit var teamAwayName:TextView
+    private lateinit var imageHomeMatch:ImageView
+    private lateinit var imageAwayMatch:ImageView
+    private lateinit var teamHomeName:TextView
+    private lateinit var teamAwayName:TextView
     lateinit var scrollView: ScrollView
-    lateinit var presenter: MatchPresenter
+    private lateinit var presenter: MatchPresenter
 
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
     private lateinit var id: String
 
-    lateinit var dateEvent:TextView
+    private lateinit var dateEvent:TextView
     lateinit var item:NextMatch
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

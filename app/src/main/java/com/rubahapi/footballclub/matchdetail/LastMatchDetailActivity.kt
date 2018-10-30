@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.Gravity
 import android.view.Menu
@@ -35,11 +34,11 @@ import org.jetbrains.anko.design.snackbar
 
 class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
 
-    lateinit var imageHomeMatch:ImageView
-    lateinit var imageAwayMatch:ImageView
-    lateinit var teamHomeName:TextView
-    lateinit var teamAwayName:TextView
-    lateinit var presenter: LastMatchPresenter
+    private lateinit var imageHomeMatch:ImageView
+    private lateinit var imageAwayMatch:ImageView
+    private lateinit var teamHomeName:TextView
+    private lateinit var teamAwayName:TextView
+    private lateinit var presenter: LastMatchPresenter
 
     private var menuItem: Menu? = null
     private var isFavorite: Boolean = false
@@ -450,7 +449,7 @@ class LastMatchDetailActivity: AppCompatActivity(), LastMatchView{
                     )
 
                     textView {
-                        text = "Midlle Field"
+                        text = "Middle Field"
                         textAlignment = View.TEXT_ALIGNMENT_CENTER
                     }.lparams(
                         width = dip(120),
