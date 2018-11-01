@@ -11,7 +11,9 @@ import com.rubahapi.footballclub.R
 import com.rubahapi.footballclub.R.id.event_date
 import com.rubahapi.footballclub.R.id.event_name
 import com.rubahapi.footballclub.model.NextMatch
+import com.rubahapi.footballclub.util.toSimpleString
 import org.jetbrains.anko.*
+import java.text.SimpleDateFormat
 
 class NextMatchAdapter(private val items: List<NextMatch>,
                        private val listener: (NextMatch) -> Unit): RecyclerView.Adapter<NextMatchViewHolder>(){
@@ -81,8 +83,11 @@ class NextMatchViewHolder(view: View): RecyclerView.ViewHolder(view) {
     private val eventDate: TextView = view.find(event_date)
 
     fun bindItem(match: NextMatch, listener: (NextMatch)-> Unit){
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val date = dateFormat.parse(match.eventDate)
         eventName.text = match.eventName
-        eventDate.text = match.eventDate.toString()
+//        eventDate.text = match.eventDate.toString()
+        eventDate.text = toSimpleString(date)
 //        eventDate.text = convertDate(match.eventDate.toString())
 
         itemView.setOnClickListener { listener(match) }

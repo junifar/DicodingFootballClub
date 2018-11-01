@@ -11,7 +11,9 @@ import android.widget.TextView
 import com.rubahapi.footballclub.R
 import com.rubahapi.footballclub.R.id.*
 import com.rubahapi.footballclub.model.LastMatch
+import com.rubahapi.footballclub.util.toSimpleString
 import org.jetbrains.anko.*
+import java.text.SimpleDateFormat
 
 class LastMatchAdapter(private val items: List<LastMatch>,
                        private val listener: (LastMatch) -> Unit): RecyclerView.Adapter<LastMatchViewHolder>(){
@@ -116,11 +118,14 @@ class LastMatchViewHolder(view: View): RecyclerView.ViewHolder(view) {
     private val eventDate: TextView = view.find(event_date)
 
     fun bindItem(match: LastMatch, listener: (LastMatch)-> Unit){
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val date = dateFormat.parse(match.eventDate)
         homeTeam.text = match.homeTeam
         awayTeam.text = match.awayTeam
         homeScore.text = match.homeScore
         awayScore.text = match.awayScore
-        eventDate.text = match.eventDate
+//        eventDate.text = match.eventDate
+        eventDate.text = toSimpleString(date)
 
         itemView.setOnClickListener { listener(match) }
     }

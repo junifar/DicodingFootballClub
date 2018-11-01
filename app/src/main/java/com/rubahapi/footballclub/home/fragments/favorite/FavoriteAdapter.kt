@@ -10,7 +10,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.rubahapi.footballclub.R.id.*
 import com.rubahapi.footballclub.db.Favorite
+import com.rubahapi.footballclub.util.toSimpleString
 import org.jetbrains.anko.*
+import java.text.SimpleDateFormat
 
 class FavoriteAdapter(private val items: List<Favorite>,
                       private val listener: (Favorite) -> Unit): RecyclerView.Adapter<FavoriteViewHolder>(){
@@ -101,11 +103,14 @@ class FavoriteViewHolder(view: View): RecyclerView.ViewHolder(view) {
     private val eventDate: TextView = view.find(event_date)
 
     fun bindItem(favorite: Favorite, listener: (Favorite) -> Unit) {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+        val date = dateFormat.parse(favorite.eventDate)
         homeTeam.text = favorite.homeTeam
         awayTeam.text = favorite.awayTeam
         homeScore.text = favorite.homeScore ?: "0"
         awayScore.text = favorite.awayScore ?: "0"
-        eventDate.text = favorite.eventDate
+//        eventDate.text = favorite.eventDate
+        eventDate.text = toSimpleString(date)
         itemView.setOnClickListener { listener(favorite) }
     }
 }
