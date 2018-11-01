@@ -11,7 +11,6 @@ import android.widget.TextView
 import com.rubahapi.footballclub.R.id.*
 import com.rubahapi.footballclub.db.Favorite
 import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class FavoriteAdapter(private val items: List<Favorite>,
                       private val listener: (Favorite) -> Unit): RecyclerView.Adapter<FavoriteViewHolder>(){
@@ -107,6 +106,6 @@ class FavoriteViewHolder(view: View): RecyclerView.ViewHolder(view) {
         homeScore.text = favorite.homeScore ?: "0"
         awayScore.text = favorite.awayScore ?: "0"
         eventDate.text = favorite.eventDate
-        itemView.onClick { listener(favorite) }
+        itemView.setOnClickListener { listener(favorite) }
     }
 }
