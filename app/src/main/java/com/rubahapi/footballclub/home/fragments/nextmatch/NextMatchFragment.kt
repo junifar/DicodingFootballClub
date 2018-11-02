@@ -12,7 +12,6 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import com.google.gson.Gson
 import com.rubahapi.footballclub.api.ApiRepository
-import com.rubahapi.footballclub.home.fragments.NextMatchView
 import com.rubahapi.footballclub.matchdetail.MatchDetailActivity
 import com.rubahapi.footballclub.model.NextMatch
 import com.rubahapi.footballclub.util.invisible

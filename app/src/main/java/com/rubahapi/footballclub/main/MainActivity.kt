@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import com.google.gson.Gson
+import com.rubahapi.footballclub.R
 import com.rubahapi.footballclub.R.color.colorAccent
 import com.rubahapi.footballclub.api.ApiRepository
 import com.rubahapi.footballclub.home.HomeActivity
@@ -60,6 +61,7 @@ class MainActivity : AppCompatActivity(), MainView {
                     lparams(width= matchParent, height = wrapContent)
 
                     listTeam = recyclerView {
+                        id = R.id.list_league
                         lparams(width= matchParent, height = wrapContent)
                         layoutManager = LinearLayoutManager(ctx)
                     }

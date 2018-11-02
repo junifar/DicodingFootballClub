@@ -7,4 +7,5 @@
     <item name="away_team" type="id" />
     <item name="home_team" type="id" />
     <item name="league_name" type="id" />
+    <item name="list_league" type="id"/>
 </resources>
