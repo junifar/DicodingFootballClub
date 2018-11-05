@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import com.google.gson.Gson
+import com.rubahapi.footballclub.R
 import com.rubahapi.footballclub.api.ApiRepository
 import com.rubahapi.footballclub.matchdetail.LastMatchDetailActivity
 import com.rubahapi.footballclub.model.LastMatch
@@ -92,6 +93,7 @@ class LastMatchFragment :Fragment(), LastMatchView {
                             height = wrapContent
                         )
                         listLastMatch = recyclerView {
+                            id = R.id.last_match_recycler
                             lparams(
                                 width = matchParent,
                                 height =  matchParent
