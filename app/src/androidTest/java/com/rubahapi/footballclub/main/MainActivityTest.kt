@@ -14,8 +14,7 @@ import android.support.test.rule.ActivityTestRule
 import android.support.test.runner.AndroidJUnit4
 import android.support.v7.widget.RecyclerView
 import com.rubahapi.footballclub.R
-import com.rubahapi.footballclub.R.id.add_to_favorite
-import com.rubahapi.footballclub.R.id.list_league
+import com.rubahapi.footballclub.R.id.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
