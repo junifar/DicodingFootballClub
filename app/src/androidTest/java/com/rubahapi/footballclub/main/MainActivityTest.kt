@@ -37,8 +37,8 @@ class MainActivityTest{
     fun testMainActivityBehaviour(){
         onView(withText("English Premier League")).perform(click())
 
-        onView(ViewMatchers.withId(R.id.last_match_recycler)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(2))
-            .check(matches(isDisplayed()))
+//        onView(ViewMatchers.withId(R.id.last_match_recycler)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(2))
+//            .check(matches(isDisplayed()))
         onView(ViewMatchers.withId(R.id.last_match_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(2, ViewActions.click()))
 
         onView(withId(add_to_favorite)).check(matches(isDisplayed()))
