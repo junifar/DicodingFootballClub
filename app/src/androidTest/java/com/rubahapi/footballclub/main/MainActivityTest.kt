@@ -37,8 +37,6 @@ class MainActivityTest{
     fun testMainActivityBehaviour(){
         onView(withText("English Premier League")).perform(click())
 
-//        onView(ViewMatchers.withId(R.id.last_match_recycler)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(2))
-//            .check(matches(isDisplayed()))
         onView(ViewMatchers.withId(R.id.last_match_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(2, ViewActions.click()))
 
         onView(withId(add_to_favorite)).check(matches(isDisplayed()))
@@ -48,15 +46,5 @@ class MainActivityTest{
         onView(withId(navigation))
             .check(matches(isDisplayed()))
         onView(withId(navigation_favorite)).perform(click())
-
-
-//        onView(withText("Chelsea")).check(matches(isDisplayed()))
-//        onView(withText("Chelsea")).perform(click())
-
-//        onView(withText("Chelsea 3 VS 1 Crystal Palace")).perform(click())
-//        onView(withId(add_to_favorite)).check(matches(isDisplayed()))
-//        onView(withId(add_to_favorite)).perform(click())
-//        pressBack()
-//        pressBack()
     }
 }
