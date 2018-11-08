@@ -43,6 +43,8 @@ class MatchDetailActivity: AppCompatActivity(), MatchView{
 
     private lateinit var dateEvent:TextView
     lateinit var item:NextMatch
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         item = intent.getParcelableExtra("item")

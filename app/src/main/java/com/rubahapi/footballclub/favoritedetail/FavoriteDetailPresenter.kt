@@ -1,14 +1,12 @@
 package com.rubahapi.footballclub.favoritedetail
 
-import com.rubahapi.footballclub.model.TeamResponse
 import com.google.gson.Gson
 import com.rubahapi.footballclub.api.ApiRepository
 import com.rubahapi.footballclub.api.TheSportDBApi
+import com.rubahapi.footballclub.model.TeamResponse
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.coroutines.experimental.bg
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 
 class FavoriteDetailPresenter(private val view: FavoriteDetailView,
                               private val apiRepository: ApiRepository,

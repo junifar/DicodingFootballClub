@@ -7,8 +7,6 @@ import com.rubahapi.footballclub.model.LastMatchResponse
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.coroutines.experimental.bg
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 
 class LastMatchPresenter(private val view: LastMatchFragment,
                          private val apiRepository: ApiRepository,

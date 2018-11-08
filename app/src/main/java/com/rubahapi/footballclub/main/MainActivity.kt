@@ -1,6 +1,7 @@
 package com.rubahapi.footballclub.main
 
 import android.os.Bundle
+import android.support.test.espresso.idling.CountingIdlingResource
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity(), MainView {
     private lateinit var progressBar: ProgressBar
     private lateinit var leagueListAdapter: LeagueListAdapter
     private lateinit var leaguePresenter: LeaguePresenter
+
+    val idlingResource = CountingIdlingResource("DATA_LOADER")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +81,7 @@ class MainActivity : AppCompatActivity(), MainView {
         val request = ApiRepository()
         val gson = Gson()
 
+        idlingResource.increment()
         leaguePresenter = LeaguePresenter(this, request, gson)
         leaguePresenter.getLeagueList()
 
@@ -96,5 +100,6 @@ class MainActivity : AppCompatActivity(), MainView {
         league.clear()
         league.addAll(data)
         leagueListAdapter.notifyDataSetChanged()
+        idlingResource.decrement()
     }
 }

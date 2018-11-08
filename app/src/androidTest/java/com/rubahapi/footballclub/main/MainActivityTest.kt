@@ -3,6 +3,7 @@ package com.rubahapi.footballclub.main
 import android.support.test.espresso.Espresso
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.pressBack
+import android.support.test.espresso.IdlingRegistry
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions
@@ -35,8 +36,12 @@ class MainActivityTest{
 
     @Test
     fun testMainActivityBehaviour(){
+//        val idlingResource = CountingIdlingResource("DATA_LOADER")
+//        IdlingRegistry.getInstance().register(idlingResource)
+        IdlingRegistry.getInstance().register(activityRule.activity.idlingResource)
         onView(withText("English Premier League")).perform(click())
 
+        Thread.sleep(5000)
         onView(ViewMatchers.withId(R.id.last_match_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(2, ViewActions.click()))
 
         onView(withId(add_to_favorite)).check(matches(isDisplayed()))
